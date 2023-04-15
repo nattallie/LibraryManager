@@ -7,19 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B21155629EAA2DC00BB06CF /* BookSegments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B21155529EAA2DC00BB06CF /* BookSegments.swift */; };
+		0B21155829EAAA9500BB06CF /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B21155729EAAA9500BB06CF /* Book.swift */; };
+		0B21155A29EAD83400BB06CF /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B21155929EAD83400BB06CF /* Mocks.swift */; };
 		0B769E2429A779BE00B261CC /* LibraryManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B769E2329A779BE00B261CC /* LibraryManagerApp.swift */; };
-		0B769E2629A779BE00B261CC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B769E2529A779BE00B261CC /* ContentView.swift */; };
 		0B769E2829A779BE00B261CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B769E2729A779BE00B261CC /* Assets.xcassets */; };
 		0B769E2B29A779BE00B261CC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B769E2A29A779BE00B261CC /* Preview Assets.xcassets */; };
 		0BE2ADB629E9AA3500DD2A73 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 0BE2ADB529E9AA3500DD2A73 /* ComposableArchitecture */; };
+		0BE2ADB829E9AFFA00DD2A73 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE2ADB729E9AFFA00DD2A73 /* AppView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B21155529EAA2DC00BB06CF /* BookSegments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSegments.swift; sourceTree = "<group>"; };
+		0B21155729EAAA9500BB06CF /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		0B21155929EAD83400BB06CF /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
 		0B769E2029A779BE00B261CC /* LibraryManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LibraryManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B769E2329A779BE00B261CC /* LibraryManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryManagerApp.swift; sourceTree = "<group>"; };
-		0B769E2529A779BE00B261CC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0B769E2729A779BE00B261CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0B769E2A29A779BE00B261CC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		0BE2ADB729E9AFFA00DD2A73 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,9 +60,12 @@
 			isa = PBXGroup;
 			children = (
 				0B769E2329A779BE00B261CC /* LibraryManagerApp.swift */,
-				0B769E2529A779BE00B261CC /* ContentView.swift */,
+				0BE2ADB729E9AFFA00DD2A73 /* AppView.swift */,
+				0B21155529EAA2DC00BB06CF /* BookSegments.swift */,
 				0B769E2729A779BE00B261CC /* Assets.xcassets */,
 				0B769E2929A779BE00B261CC /* Preview Content */,
+				0B21155729EAAA9500BB06CF /* Book.swift */,
+				0B21155929EAD83400BB06CF /* Mocks.swift */,
 			);
 			path = LibraryManager;
 			sourceTree = "<group>";
@@ -145,8 +154,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B769E2629A779BE00B261CC /* ContentView.swift in Sources */,
+				0B21155829EAAA9500BB06CF /* Book.swift in Sources */,
+				0BE2ADB829E9AFFA00DD2A73 /* AppView.swift in Sources */,
 				0B769E2429A779BE00B261CC /* LibraryManagerApp.swift in Sources */,
+				0B21155629EAA2DC00BB06CF /* BookSegments.swift in Sources */,
+				0B21155A29EAD83400BB06CF /* Mocks.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
