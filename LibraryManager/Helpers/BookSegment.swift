@@ -1,5 +1,5 @@
 //
-//  BookSegments.swift
+//  BookSegment.swift
 //  LibraryManager
 //
 //  Created by Nata Khurtsidze on 15.04.23.

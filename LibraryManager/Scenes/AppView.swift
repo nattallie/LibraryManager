@@ -24,32 +24,60 @@ struct Library: ReducerProtocol {
                 return books.filter { $0.wantsToRead }
             }
         }
+        var newBook: BookDetails.State
+        var shouldNavigateToNewBook: Bool = false
     }
     
     // MARK: Action
     enum Action {
+        case onAppear
         case didChangeSegment(BookSegment)
         case book(id: Book.State.ID, action: Book.Action)
+        case didTapAddBook
+        case newBookCreated(BookDetails.Action)
+        case newBookNavigationActivityChanged
     }
     
     // MARK: Body
     var body: some ReducerProtocol<State, Action> {
         Reduce { state, action in
             switch action {
+            case .onAppear:
+                state.shouldNavigateToNewBook = false
+                return .none
             case let .didChangeSegment(currentSegment):
                 state.currentSegment = currentSegment
                 return .none
             case .book:
+                return .none
+            case .didTapAddBook:
+                state.shouldNavigateToNewBook = true
+                return .none
+            case .newBookNavigationActivityChanged:
+                return .none
+            case .newBookCreated(.didTapDoneButton):
+                state.shouldNavigateToNewBook = false
+                state.books.append(state.newBook.book)
+                state.newBook = .new()
+                return .none
+            case .newBookCreated(.didTapBackButton):
+                state.shouldNavigateToNewBook = false
+                state.newBook = .new()
+                return .none
+            default:
                 return .none
             }
         }
         .forEach(\.books, action: /Action.book(id:action:)) {
           Book()
         }
+        Scope(state: \.newBook, action: /Action.newBookCreated) {
+            BookDetails()
+        }
     }
 }
 
-// MARK: - AppView
+// MARK: - App View
 struct AppView: View {
     let store: StoreOf<Library>
     @ObservedObject var viewStore: ViewStore<ViewState, Library.Action>
@@ -61,9 +89,11 @@ struct AppView: View {
     
     struct ViewState: Equatable {
         var currentSegment: BookSegment
+        var shouldNavigateToNewBook: Bool
         
         init(state: Library.State) {
             self.currentSegment = state.currentSegment
+            self.shouldNavigateToNewBook = state.shouldNavigateToNewBook
         }
     }
     
@@ -80,21 +110,44 @@ struct AppView: View {
                         Text(segment.rawValue)
                     }
                 }
-                .pickerStyle(.segmented)
-                .padding(.top, 20)
-                .padding(.horizontal)
+                    .pickerStyle(.segmented)
+                    .padding(.top, 20)
+                    .padding(.horizontal)
                 List {
                     ForEachStore(store.scope(state: \.filteredBooks, action: Library.Action.book(id:action:))) {
                         BookRow(store: $0)
                     }
                 }
-                .listStyle(.insetGrouped)
-                .scrollContentBackground(.hidden)
-                .background(Color.white.opacity(0.5))
-                .shadow(color: Color.gray.opacity(0.5), radius: 5)
+                    .listStyle(.insetGrouped)
+                    .scrollContentBackground(.hidden)
+                    .background(Color.white.opacity(0.5))
+                    .shadow(color: Color.gray.opacity(0.5), radius: 5)
+                NavigationLink(
+                    destination: BookDetailsView(
+                        store: store.scope(
+                                state: \.newBook,
+                                action: Library.Action.newBookCreated
+                        )
+                    ),
+                    isActive: viewStore.binding(
+                        get: \.shouldNavigateToNewBook,
+                        send: Library.Action.newBookNavigationActivityChanged
+                    )
+                ) {
+                    Rectangle().opacity(0)
+                }
+                    .frame(width: 0, height: 0)
+                    .hidden()
             }
-            .navigationTitle("Library Manager")
+            .toolbar(content: {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Add  📗", action: { viewStore.send(.didTapAddBook) })
+                }
+            })
         }
+            .onAppear {
+                viewStore.send(.onAppear)
+            }
     }
 }
 

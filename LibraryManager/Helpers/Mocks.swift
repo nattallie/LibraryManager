@@ -40,7 +40,8 @@ extension Library.State {
     ) -> Self {
         .init(
             currentSegment: currentSegment,
-            books: books
+            books: books,
+            newBook: .new()
         )
     }
 }
@@ -65,5 +66,18 @@ extension Book.State {
             wantsToRead: wantsToRead,
             isRead: isRead
         )
+    }
+}
+
+// MARK: - BookDetails.State
+extension BookDetails.State {
+    static func mock(
+        book: Book.State = .mock()
+    ) -> Self {
+        .init(book: book)
+    }
+    
+    static func new() -> Self {
+        .init(book: .init(id: UUID(), title: "", author: "", owns: false, wantsToBuy: false, wantsToRead: false, isRead: false))
     }
 }

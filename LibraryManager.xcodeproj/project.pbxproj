@@ -7,25 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B21155629EAA2DC00BB06CF /* BookSegments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B21155529EAA2DC00BB06CF /* BookSegments.swift */; };
+		0B21155629EAA2DC00BB06CF /* BookSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B21155529EAA2DC00BB06CF /* BookSegment.swift */; };
 		0B21155829EAAA9500BB06CF /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B21155729EAAA9500BB06CF /* Book.swift */; };
 		0B21155A29EAD83400BB06CF /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B21155929EAD83400BB06CF /* Mocks.swift */; };
 		0B769E2429A779BE00B261CC /* LibraryManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B769E2329A779BE00B261CC /* LibraryManagerApp.swift */; };
 		0B769E2829A779BE00B261CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B769E2729A779BE00B261CC /* Assets.xcassets */; };
-		0B769E2B29A779BE00B261CC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B769E2A29A779BE00B261CC /* Preview Assets.xcassets */; };
 		0BE2ADB629E9AA3500DD2A73 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 0BE2ADB529E9AA3500DD2A73 /* ComposableArchitecture */; };
 		0BE2ADB829E9AFFA00DD2A73 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE2ADB729E9AFFA00DD2A73 /* AppView.swift */; };
+		0BF248DF29F044ED00DC92D6 /* BookDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF248DE29F044ED00DC92D6 /* BookDetailsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0B21155529EAA2DC00BB06CF /* BookSegments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSegments.swift; sourceTree = "<group>"; };
+		0B21155529EAA2DC00BB06CF /* BookSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSegment.swift; sourceTree = "<group>"; };
 		0B21155729EAAA9500BB06CF /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		0B21155929EAD83400BB06CF /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
 		0B769E2029A779BE00B261CC /* LibraryManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LibraryManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B769E2329A779BE00B261CC /* LibraryManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryManagerApp.swift; sourceTree = "<group>"; };
 		0B769E2729A779BE00B261CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		0B769E2A29A779BE00B261CC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0BE2ADB729E9AFFA00DD2A73 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		0BF248DE29F044ED00DC92D6 /* BookDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,22 +60,38 @@
 			isa = PBXGroup;
 			children = (
 				0B769E2329A779BE00B261CC /* LibraryManagerApp.swift */,
-				0BE2ADB729E9AFFA00DD2A73 /* AppView.swift */,
-				0B21155529EAA2DC00BB06CF /* BookSegments.swift */,
+				0BF248DB29F0421800DC92D6 /* Scenes */,
+				0BF248DD29F0425C00DC92D6 /* Helpers */,
+				0BF248DC29F0422E00DC92D6 /* Views */,
 				0B769E2729A779BE00B261CC /* Assets.xcassets */,
-				0B769E2929A779BE00B261CC /* Preview Content */,
-				0B21155729EAAA9500BB06CF /* Book.swift */,
-				0B21155929EAD83400BB06CF /* Mocks.swift */,
 			);
 			path = LibraryManager;
 			sourceTree = "<group>";
 		};
-		0B769E2929A779BE00B261CC /* Preview Content */ = {
+		0BF248DB29F0421800DC92D6 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				0B769E2A29A779BE00B261CC /* Preview Assets.xcassets */,
+				0BE2ADB729E9AFFA00DD2A73 /* AppView.swift */,
+				0BF248DE29F044ED00DC92D6 /* BookDetailsView.swift */,
 			);
-			path = "Preview Content";
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		0BF248DC29F0422E00DC92D6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0B21155729EAAA9500BB06CF /* Book.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0BF248DD29F0425C00DC92D6 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0B21155529EAA2DC00BB06CF /* BookSegment.swift */,
+				0B21155929EAD83400BB06CF /* Mocks.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,7 +158,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B769E2B29A779BE00B261CC /* Preview Assets.xcassets in Resources */,
 				0B769E2829A779BE00B261CC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -157,7 +172,8 @@
 				0B21155829EAAA9500BB06CF /* Book.swift in Sources */,
 				0BE2ADB829E9AFFA00DD2A73 /* AppView.swift in Sources */,
 				0B769E2429A779BE00B261CC /* LibraryManagerApp.swift in Sources */,
-				0B21155629EAA2DC00BB06CF /* BookSegments.swift in Sources */,
+				0B21155629EAA2DC00BB06CF /* BookSegment.swift in Sources */,
+				0BF248DF29F044ED00DC92D6 /* BookDetailsView.swift in Sources */,
 				0B21155A29EAD83400BB06CF /* Mocks.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,7 +302,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"LibraryManager/Preview Content\"";
 				DEVELOPMENT_TEAM = B8426X6AW9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -295,6 +310,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -315,7 +331,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"LibraryManager/Preview Content\"";
 				DEVELOPMENT_TEAM = B8426X6AW9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -324,6 +339,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
