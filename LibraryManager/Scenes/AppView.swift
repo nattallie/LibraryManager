@@ -36,9 +36,10 @@ struct Library: ReducerProtocol {
         case didTapAddBook
         case newBookCreated(BookDetails.Action)
         case newBookNavigationActivityChanged
+        case filteredBooksDeletedAt(indexSet: IndexSet)
     }
     
-    // MARK: Body
+    // MARK: Reducer Body
     var body: some ReducerProtocol<State, Action> {
         Reduce { state, action in
             switch action {
@@ -64,6 +65,11 @@ struct Library: ReducerProtocol {
                 state.shouldNavigateToNewBook = false
                 state.newBook = .new()
                 return .none
+            case let .filteredBooksDeletedAt(indexSet):
+                indexSet.forEach { index in
+                    state.books.remove(state.filteredBooks[index])
+                }
+                return .none
             default:
                 return .none
             }
@@ -82,11 +88,13 @@ struct AppView: View {
     let store: StoreOf<Library>
     @ObservedObject var viewStore: ViewStore<ViewState, Library.Action>
     
+    // MARK: init
     init(store: StoreOf<Library>) {
         self.store = store
         viewStore = ViewStore(store.scope(state: ViewState.init(state:)))
     }
     
+    // MARK: View State
     struct ViewState: Equatable {
         var currentSegment: BookSegment
         var shouldNavigateToNewBook: Bool
@@ -97,6 +105,7 @@ struct AppView: View {
         }
     }
     
+    // MARK: App View Body
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
@@ -115,8 +124,9 @@ struct AppView: View {
                     .padding(.horizontal)
                 List {
                     ForEachStore(store.scope(state: \.filteredBooks, action: Library.Action.book(id:action:))) {
-                        BookRow(store: $0)
+                        BookRow(store: $0, fromSegment: viewStore.currentSegment)
                     }
+                    .onDelete(perform: { viewStore.send(.filteredBooksDeletedAt(indexSet: $0)) })
                 }
                     .listStyle(.insetGrouped)
                     .scrollContentBackground(.hidden)
@@ -124,10 +134,12 @@ struct AppView: View {
                     .shadow(color: Color.gray.opacity(0.5), radius: 5)
                 NavigationLink(
                     destination: BookDetailsView(
-                        store: store.scope(
+                        store:
+                            store.scope(
                                 state: \.newBook,
                                 action: Library.Action.newBookCreated
-                        )
+                            ),
+                        fromSegment: .library
                     ),
                     isActive: viewStore.binding(
                         get: \.shouldNavigateToNewBook,

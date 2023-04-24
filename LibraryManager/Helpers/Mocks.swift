@@ -11,7 +11,7 @@ import Foundation
 // MARK: - Library.State
 extension Library.State {
     static func mock(
-        currentSegment: BookSegment =  .library,
+        currentSegment: BookSegment = .library,
         books: IdentifiedArrayOf<Book.State> = [
             .mock(
                 wantsToRead: true,

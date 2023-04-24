@@ -47,12 +47,12 @@ struct Book: ReducerProtocol {
         }
     }
     
-    // MARK: - Action
+    // MARK: Action
     enum Action: Equatable {
         case bookDetails(BookDetails.Action)
     }
     
-    // MARK: - Body
+    // MARK: Body
     var body: some ReducerProtocol<State, Action> {
         Reduce { state, action in
             switch action {
@@ -70,7 +70,9 @@ struct Book: ReducerProtocol {
 struct BookRow: View {
     let store: StoreOf<Book>
     @State var isShowingDetailsView: Bool = false
+    var fromSegment: BookSegment
     
+    // MARK: Book Row View
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             ZStack {
@@ -100,10 +102,12 @@ struct BookRow: View {
                     }
                     NavigationLink(
                         destination: BookDetailsView(
-                            store: store.scope(
+                            store:
+                                store.scope(
                                     state: \.bookDetails,
                                     action: Book.Action.bookDetails
-                            )
+                                ),
+                            fromSegment: fromSegment
                         ),
                         isActive: $isShowingDetailsView
                     ) {
@@ -125,6 +129,6 @@ struct BookRow: View {
 // MARK: - Preview
 struct Book_Previews: PreviewProvider {
     static var previews: some View {
-        BookRow(store: Store(initialState: Book.State.mock(), reducer: Book()))
+        BookRow(store: Store(initialState: Book.State.mock(), reducer: Book()), fromSegment: .library)
     }
 }

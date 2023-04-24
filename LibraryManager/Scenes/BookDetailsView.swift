@@ -56,6 +56,7 @@ struct BookDetails: ReducerProtocol {
         }
     }
     
+    // MARK: Book Details Mode
     enum BookDetailsMode {
         case create
         case edit
@@ -66,6 +67,7 @@ struct BookDetails: ReducerProtocol {
 struct BookDetailsView: View {
     let store: StoreOf<BookDetails>
     @ObservedObject var viewStore: ViewStore<BookDetails.State, BookDetails.Action>
+    var fromSegment: BookSegment
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
@@ -102,14 +104,19 @@ struct BookDetailsView: View {
     }
     
     var isValidData: Bool {
-        !viewStore.book.title.isEmpty && !viewStore.book.author.isEmpty && (viewStore.book.wantsToBuy || viewStore.book.wantsToRead || viewStore.book.owns)
+        !viewStore.book.title.isEmpty &&
+        !viewStore.book.author.isEmpty &&
+        (viewStore.book.wantsToBuy || viewStore.book.wantsToRead || viewStore.book.owns)
     }
     
-    init(store: StoreOf<BookDetails>) {
+    // MARK: init
+    init(store: StoreOf<BookDetails>, fromSegment: BookSegment) {
         self.store = store
         self.viewStore = ViewStore(store)
+        self.fromSegment = fromSegment
     }
     
+    // MARK: Book Details View
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
@@ -139,30 +146,36 @@ struct BookDetailsView: View {
                         .textFieldStyle(.roundedBorder)
                         .border(Color.black)
                         .cornerRadius(3)
-                    QuestionWithToggleRow(
-                        question: "Do you have \(bookName) ?",
-                        isOn: Binding(
-                            get: { viewStore.book.owns },
-                            set: { viewStore.send(.didChangeOwnership($0)) }
+                    if !(viewStore.mode == .edit && fromSegment == .library) {
+                        QuestionWithToggleRow(
+                            question: "Do you have \(bookName) ?",
+                            isOn: Binding(
+                                get: { viewStore.book.owns },
+                                set: { viewStore.send(.didChangeOwnership($0)) }
+                            )
                         )
-                    )
                         .padding(.leading)
-                    QuestionWithToggleRow(
-                        question: "Do you want to buy \(bookName) ?",
-                        isOn: Binding(
-                            get: { viewStore.book.wantsToBuy },
-                            set: { viewStore.send(.didChangeWishlist($0)) }
+                    }
+                    if !(viewStore.mode == .edit && fromSegment == .wishlist) {
+                        QuestionWithToggleRow(
+                            question: "Do you want to buy \(bookName) ?",
+                            isOn: Binding(
+                                get: { viewStore.book.wantsToBuy },
+                                set: { viewStore.send(.didChangeWishlist($0)) }
+                            )
                         )
-                    )
                         .padding(.leading)
-                    QuestionWithToggleRow(
-                        question: "Do you want to add \(bookName) in Reading Queue ?",
-                        isOn: Binding(
-                            get: { viewStore.book.wantsToRead },
-                            set: { viewStore.send(.didChangeQueue($0)) }
+                    }
+                    if !(viewStore.mode == .edit && fromSegment == .queue) {
+                        QuestionWithToggleRow(
+                            question: "Do you want to add \(bookName) in Reading Queue ?",
+                            isOn: Binding(
+                                get: { viewStore.book.wantsToRead },
+                                set: { viewStore.send(.didChangeQueue($0)) }
+                            )
                         )
-                    )
                         .padding(.leading)
+                    }
                     QuestionWithToggleRow(
                         question: "Have you read \(bookName) ?",
                         isOn: viewStore.binding(get: \.book.isRead, send: BookDetails.Action.didChangeIsRead)
@@ -222,11 +235,13 @@ struct QuestionWithToggleRow: View {
 
 struct BookDetailsView_Preview: PreviewProvider {
     static var previews: some View {
-        BookDetailsView(store:
+        BookDetailsView(
+            store:
                 .init(
                     initialState: BookDetails.State.mock(),
                     reducer: BookDetails()
-                )
+                ),
+            fromSegment: .library
         )
     }
 }

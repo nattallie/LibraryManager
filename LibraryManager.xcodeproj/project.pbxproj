@@ -63,8 +63,8 @@
 			children = (
 				0B769E2329A779BE00B261CC /* LibraryManagerApp.swift */,
 				0BF248DB29F0421800DC92D6 /* Scenes */,
-				0BF248DD29F0425C00DC92D6 /* Helpers */,
 				0BF248DC29F0422E00DC92D6 /* Views */,
+				0BF248DD29F0425C00DC92D6 /* Helpers */,
 				0B769E2729A779BE00B261CC /* Assets.xcassets */,
 			);
 			path = LibraryManager;
