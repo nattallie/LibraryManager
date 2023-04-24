@@ -22,14 +22,17 @@ struct Book: ReducerProtocol {
         
         var bookDetails: BookDetails.State {
             get {
-                .init(book: .init(
-                    id: id,
-                    title: title,
-                    author: author,
-                    owns: owns,
-                    wantsToBuy: wantsToBuy,
-                    wantsToRead: wantsToRead,
-                    isRead: isRead)
+                .init(
+                    book: .init(
+                        id: id,
+                        title: title,
+                        author: author,
+                        owns: owns,
+                        wantsToBuy: wantsToBuy,
+                        wantsToRead: wantsToRead,
+                        isRead: isRead
+                    ),
+                    mode: .edit
                 )
             }
             set {
@@ -109,6 +112,9 @@ struct BookRow: View {
                     .frame(width: 0, height: 0)
                     .hidden()
                 }
+            }
+            .onTapGesture {
+                isShowingDetailsView.toggle()
             }
             .background(.clear)
             .listRowSeparator(.hidden)

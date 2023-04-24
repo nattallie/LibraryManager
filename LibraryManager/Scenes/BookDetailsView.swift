@@ -13,6 +13,7 @@ struct BookDetails: ReducerProtocol {
     // MARK: State
     struct State: Equatable {
         var book: Book.State
+        var mode: BookDetailsMode
     }
     
     // MARK: Action
@@ -54,6 +55,11 @@ struct BookDetails: ReducerProtocol {
             return .none
         }
     }
+    
+    enum BookDetailsMode {
+        case create
+        case edit
+    }
 }
 
 // MARK: - Book Details View
@@ -73,6 +79,32 @@ struct BookDetailsView: View {
         viewStore.book.title.isEmpty ? "this book" : "\'\(viewStore.book.title)\'"
     }
     
+    var backButtonIsDisabled: Bool {
+        switch viewStore.mode {
+        case .create:
+            return false
+        case .edit:
+            return !isValidData
+        }
+    }
+    
+    var doneButtonIsDisabled: Bool {
+        !isValidData
+    }
+    
+    var doneButtonIsHidden: Bool {
+        switch viewStore.mode {
+        case .create:
+            return false
+        case .edit:
+            return true
+        }
+    }
+    
+    var isValidData: Bool {
+        !viewStore.book.title.isEmpty && !viewStore.book.author.isEmpty && (viewStore.book.wantsToBuy || viewStore.book.wantsToRead || viewStore.book.owns)
+    }
+    
     init(store: StoreOf<BookDetails>) {
         self.store = store
         self.viewStore = ViewStore(store)
@@ -80,49 +112,64 @@ struct BookDetailsView: View {
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 20) {
-                TextField(
-                    "Book Title",
-                    text: Binding(
-                        get: { viewStore.book.title },
-                        set: { viewStore.send(.didChangeTitle($0)) }
+            VStack(alignment: .leading) {
+                if !viewStore.book.title.isEmpty {
+                    Text(screenTitle)
+                        .font(.system(size: 20))
+                        .padding(.vertical, 15)
+                }
+                VStack(alignment: .leading, spacing: 20) {
+                    TextField(
+                        "Book Title",
+                        text: Binding(
+                            get: { viewStore.book.title },
+                            set: { viewStore.send(.didChangeTitle($0)) }
+                        )
                     )
-                )
-                    .textFieldStyle(.roundedBorder)
-                TextField(
-                    "Author",
-                    text: Binding(
-                        get: { viewStore.book.author },
-                        set: { viewStore.send(.didChangeAuthor($0)) }
+                        .textFieldStyle(.roundedBorder)
+                        .border(Color.black)
+                        .cornerRadius(3)
+                    TextField(
+                        "Author",
+                        text: Binding(
+                            get: { viewStore.book.author },
+                            set: { viewStore.send(.didChangeAuthor($0)) }
+                        )
                     )
-                )
-                    .textFieldStyle(.roundedBorder)
-                QuestionWithToggleRow(
-                    question: "Do you have \(bookName) ?",
-                    isOn: Binding(
-                        get: { viewStore.book.owns },
-                        set: { viewStore.send(.didChangeOwnership($0)) }
+                        .textFieldStyle(.roundedBorder)
+                        .border(Color.black)
+                        .cornerRadius(3)
+                    QuestionWithToggleRow(
+                        question: "Do you have \(bookName) ?",
+                        isOn: Binding(
+                            get: { viewStore.book.owns },
+                            set: { viewStore.send(.didChangeOwnership($0)) }
+                        )
                     )
-                )
-                QuestionWithToggleRow(
-                    question: "Do you want to buy \(bookName) ?",
-                    isOn: Binding(
-                        get: { viewStore.book.wantsToBuy },
-                        set: { viewStore.send(.didChangeWishlist($0)) }
+                        .padding(.leading)
+                    QuestionWithToggleRow(
+                        question: "Do you want to buy \(bookName) ?",
+                        isOn: Binding(
+                            get: { viewStore.book.wantsToBuy },
+                            set: { viewStore.send(.didChangeWishlist($0)) }
+                        )
                     )
-                )
-                QuestionWithToggleRow(
-                    question: "Do you want to add \(bookName) in Reading Queue ?",
-                    isOn: Binding(
-                        get: { viewStore.book.wantsToRead },
-                        set: { viewStore.send(.didChangeQueue($0)) }
+                        .padding(.leading)
+                    QuestionWithToggleRow(
+                        question: "Do you want to add \(bookName) in Reading Queue ?",
+                        isOn: Binding(
+                            get: { viewStore.book.wantsToRead },
+                            set: { viewStore.send(.didChangeQueue($0)) }
+                        )
                     )
-                )
-                QuestionWithToggleRow(
-                    question: "Have you read \(bookName) ?",
-                    isOn: viewStore.binding(get: \.book.isRead, send: BookDetails.Action.didChangeIsRead)
-                )
-                Spacer()
+                        .padding(.leading)
+                    QuestionWithToggleRow(
+                        question: "Have you read \(bookName) ?",
+                        isOn: viewStore.binding(get: \.book.isRead, send: BookDetails.Action.didChangeIsRead)
+                    )
+                        .padding(.leading)
+                    Spacer()
+                }
             }
                 .padding()
         }
@@ -134,13 +181,22 @@ struct BookDetailsView: View {
                             mode.wrappedValue.dismiss()
                             viewStore.send(.didTapBackButton)
                         }
-                    ) { Image(systemName: "arrow.left") },
+                    ) {
+                        Image(systemName: "chevron.left")
+                        
+                    }
+                    .disabled(backButtonIsDisabled),
                 trailing: Button(
                     action : {
                         mode.wrappedValue.dismiss()
                         viewStore.send(.didTapDoneButton)
                     }
-                ) { Text("Done") }
+                ) {
+                    if !doneButtonIsHidden {
+                        Text("Done")                        
+                    }
+                }
+                    .disabled(doneButtonIsDisabled)
             )
     }
 }
@@ -158,6 +214,7 @@ struct QuestionWithToggleRow: View {
     var body: some View {
         HStack(spacing: 8) {
             Toggle(question, isOn: $isOn)
+                .toggleStyle(.checkmark)
         }
         .frame(alignment: .trailing)
     }

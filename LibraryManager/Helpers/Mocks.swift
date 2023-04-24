@@ -74,10 +74,10 @@ extension BookDetails.State {
     static func mock(
         book: Book.State = .mock()
     ) -> Self {
-        .init(book: book)
+        .init(book: book, mode: .edit)
     }
     
     static func new() -> Self {
-        .init(book: .init(id: UUID(), title: "", author: "", owns: false, wantsToBuy: false, wantsToRead: false, isRead: false))
+        .init(book: .init(id: UUID(), title: "", author: "", owns: false, wantsToBuy: false, wantsToRead: false, isRead: false), mode: .create)
     }
 }
