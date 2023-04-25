@@ -10,6 +10,9 @@
 		0B21155629EAA2DC00BB06CF /* BookSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B21155529EAA2DC00BB06CF /* BookSegment.swift */; };
 		0B21155829EAAA9500BB06CF /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B21155729EAAA9500BB06CF /* Book.swift */; };
 		0B21155A29EAD83400BB06CF /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B21155929EAD83400BB06CF /* Mocks.swift */; };
+		0B47036029F82A000010A018 /* LibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B47035F29F82A000010A018 /* LibraryTests.swift */; };
+		0B47036229F8612E0010A018 /* BookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B47036129F8612E0010A018 /* BookTests.swift */; };
+		0B47036429F865390010A018 /* BookDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B47036329F865390010A018 /* BookDetailsTests.swift */; };
 		0B769E2429A779BE00B261CC /* LibraryManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B769E2329A779BE00B261CC /* LibraryManagerApp.swift */; };
 		0B769E2829A779BE00B261CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B769E2729A779BE00B261CC /* Assets.xcassets */; };
 		0B9D3ED029F665D00046107E /* CheckBoxToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9D3ECF29F665D00046107E /* CheckBoxToggleStyle.swift */; };
@@ -18,10 +21,24 @@
 		0BF248DF29F044ED00DC92D6 /* BookDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF248DE29F044ED00DC92D6 /* BookDetailsView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		0B6BD00929F825F00084BAA6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0B769E1829A779BE00B261CC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0B769E1F29A779BE00B261CC;
+			remoteInfo = LibraryManager;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0B21155529EAA2DC00BB06CF /* BookSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSegment.swift; sourceTree = "<group>"; };
 		0B21155729EAAA9500BB06CF /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		0B21155929EAD83400BB06CF /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
+		0B47035F29F82A000010A018 /* LibraryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryTests.swift; sourceTree = "<group>"; };
+		0B47036129F8612E0010A018 /* BookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTests.swift; sourceTree = "<group>"; };
+		0B47036329F865390010A018 /* BookDetailsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsTests.swift; sourceTree = "<group>"; };
+		0B6BD00529F825F00084BAA6 /* LibraryManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LibraryManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B769E2029A779BE00B261CC /* LibraryManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LibraryManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B769E2329A779BE00B261CC /* LibraryManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryManagerApp.swift; sourceTree = "<group>"; };
 		0B769E2729A779BE00B261CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -31,6 +48,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0B6BD00229F825F00084BAA6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0B769E1D29A779BE00B261CC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -42,10 +66,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B6BD00629F825F00084BAA6 /* LibraryManagerTests */ = {
+			isa = PBXGroup;
+			children = (
+				0B47035F29F82A000010A018 /* LibraryTests.swift */,
+				0B47036129F8612E0010A018 /* BookTests.swift */,
+				0B47036329F865390010A018 /* BookDetailsTests.swift */,
+			);
+			path = LibraryManagerTests;
+			sourceTree = "<group>";
+		};
 		0B769E1729A779BE00B261CC = {
 			isa = PBXGroup;
 			children = (
 				0B769E2229A779BE00B261CC /* LibraryManager */,
+				0B6BD00629F825F00084BAA6 /* LibraryManagerTests */,
 				0B769E2129A779BE00B261CC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				0B769E2029A779BE00B261CC /* LibraryManager.app */,
+				0B6BD00529F825F00084BAA6 /* LibraryManagerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -100,6 +136,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0B6BD00429F825F00084BAA6 /* LibraryManagerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0B6BD00B29F825F10084BAA6 /* Build configuration list for PBXNativeTarget "LibraryManagerTests" */;
+			buildPhases = (
+				0B6BD00129F825F00084BAA6 /* Sources */,
+				0B6BD00229F825F00084BAA6 /* Frameworks */,
+				0B6BD00329F825F00084BAA6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0B6BD00A29F825F00084BAA6 /* PBXTargetDependency */,
+			);
+			name = LibraryManagerTests;
+			productName = LibraryManagerTests;
+			productReference = 0B6BD00529F825F00084BAA6 /* LibraryManagerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		0B769E1F29A779BE00B261CC /* LibraryManager */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0B769E2E29A779BE00B261CC /* Build configuration list for PBXNativeTarget "LibraryManager" */;
@@ -130,6 +184,10 @@
 				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
+					0B6BD00429F825F00084BAA6 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 0B769E1F29A779BE00B261CC;
+					};
 					0B769E1F29A779BE00B261CC = {
 						CreatedOnToolsVersion = 14.2;
 					};
@@ -152,11 +210,19 @@
 			projectRoot = "";
 			targets = (
 				0B769E1F29A779BE00B261CC /* LibraryManager */,
+				0B6BD00429F825F00084BAA6 /* LibraryManagerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0B6BD00329F825F00084BAA6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0B769E1E29A779BE00B261CC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -168,6 +234,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0B6BD00129F825F00084BAA6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B47036229F8612E0010A018 /* BookTests.swift in Sources */,
+				0B47036429F865390010A018 /* BookDetailsTests.swift in Sources */,
+				0B47036029F82A000010A018 /* LibraryTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0B769E1C29A779BE00B261CC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -184,7 +260,51 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		0B6BD00A29F825F00084BAA6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0B769E1F29A779BE00B261CC /* LibraryManager */;
+			targetProxy = 0B6BD00929F825F00084BAA6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		0B6BD00C29F825F10084BAA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B8426X6AW9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nattallie.LibraryManagerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LibraryManager.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LibraryManager";
+			};
+			name = Debug;
+		};
+		0B6BD00D29F825F10084BAA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B8426X6AW9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nattallie.LibraryManagerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LibraryManager.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LibraryManager";
+			};
+			name = Release;
+		};
 		0B769E2C29A779BE00B261CC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -360,6 +480,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0B6BD00B29F825F10084BAA6 /* Build configuration list for PBXNativeTarget "LibraryManagerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0B6BD00C29F825F10084BAA6 /* Debug */,
+				0B6BD00D29F825F10084BAA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		0B769E1B29A779BE00B261CC /* Build configuration list for PBXProject "LibraryManager" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

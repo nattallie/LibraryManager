@@ -9,15 +9,15 @@ import ComposableArchitecture
 import SwiftUI
 
 // MARK: - Reducer
-struct BookDetails: ReducerProtocol {
+public struct BookDetails: ReducerProtocol {
     // MARK: State
-    struct State: Equatable {
-        var book: Book.State
-        var mode: BookDetailsMode
+    public struct State: Equatable {
+        public var book: Book.State
+        public var mode: BookDetailsMode
     }
     
     // MARK: Action
-    enum Action: Equatable {
+    public enum Action: Equatable {
         case didTapBackButton
         case didTapDoneButton
         case didChangeTitle(_ title: String)
@@ -28,8 +28,11 @@ struct BookDetails: ReducerProtocol {
         case didChangeIsRead(_ isRead: Bool)
     }
     
+    // MARK: init
+    public init() {}
+    
     // MARK: Reduce
-    func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
+    public func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         switch action {
         case .didTapBackButton:
             return .none
@@ -57,7 +60,7 @@ struct BookDetails: ReducerProtocol {
     }
     
     // MARK: Book Details Mode
-    enum BookDetailsMode {
+    public enum BookDetailsMode {
         case create
         case edit
     }

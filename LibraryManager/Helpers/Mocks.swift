@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - Library.State
 extension Library.State {
-    static func mock(
+    public static func mock(
         currentSegment: BookSegment = .library,
         books: IdentifiedArrayOf<Book.State> = [
             .mock(
@@ -48,7 +48,7 @@ extension Library.State {
 
 // MARK: - Book.State
 extension Book.State {
-    static func mock(
+    public static func mock(
         id: UUID = UUID(),
         title: String = "Stranger",
         author: String = "Albert Camus",
@@ -71,13 +71,13 @@ extension Book.State {
 
 // MARK: - BookDetails.State
 extension BookDetails.State {
-    static func mock(
+    public static func mock(
         book: Book.State = .mock()
     ) -> Self {
         .init(book: book, mode: .edit)
     }
     
-    static func new() -> Self {
+    public static func new() -> Self {
         .init(book: .init(id: UUID(), title: "", author: "", owns: false, wantsToBuy: false, wantsToRead: false, isRead: false), mode: .create)
     }
 }

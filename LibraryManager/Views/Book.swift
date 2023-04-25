@@ -9,16 +9,16 @@ import ComposableArchitecture
 import SwiftUI
 
 // MARK: - Reducer
-struct Book: ReducerProtocol {
+public struct Book: ReducerProtocol {
     // MARK: State
-    struct State: Equatable, Hashable, Identifiable {
-        var id: UUID
-        var title: String
-        var author: String
-        var owns: Bool
-        var wantsToBuy: Bool
-        var wantsToRead: Bool
-        var isRead: Bool
+    public struct State: Equatable, Hashable, Identifiable {
+        public var id: UUID
+        public var title: String
+        public var author: String
+        public var owns: Bool
+        public var wantsToBuy: Bool
+        public var wantsToRead: Bool
+        public var isRead: Bool
         
         var bookDetails: BookDetails.State {
             get {
@@ -48,7 +48,7 @@ struct Book: ReducerProtocol {
     }
     
     // MARK: Action
-    enum Action: Equatable {
+    public enum Action: Equatable {
         case bookDetails(BookDetails.Action)
         case didTapQueueSwipe
         case didTapLibrarySwipe
@@ -58,8 +58,11 @@ struct Book: ReducerProtocol {
         case didTapRemoveFromQueue
     }
     
+    // MARK: init
+    public init() {}
+    
     // MARK: Body
-    var body: some ReducerProtocol<State, Action> {
+    public var body: some ReducerProtocol<State, Action> {
         Reduce { state, action in
             switch action {
             case .bookDetails(_):

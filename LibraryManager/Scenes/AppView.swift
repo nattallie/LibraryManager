@@ -9,12 +9,12 @@ import ComposableArchitecture
 import SwiftUI
 
 // MARK: - Reducer
-struct Library: ReducerProtocol {
+public struct Library: ReducerProtocol {
     // MARK: State
-    struct State {
-        var currentSegment: BookSegment
-        var books: IdentifiedArrayOf<Book.State>
-        var filteredBooks: IdentifiedArrayOf<Book.State> {
+    public struct State: Equatable {
+        public var currentSegment: BookSegment
+        public var books: IdentifiedArrayOf<Book.State>
+        public var filteredBooks: IdentifiedArrayOf<Book.State> {
             switch currentSegment {
             case .library:
                 return books.filter { $0.owns }
@@ -24,12 +24,12 @@ struct Library: ReducerProtocol {
                 return books.filter { $0.wantsToRead }
             }
         }
-        var newBook: BookDetails.State
-        var shouldNavigateToNewBook: Bool = false
+        public var newBook: BookDetails.State
+        public var shouldNavigateToNewBook: Bool = false
     }
     
     // MARK: Action
-    enum Action {
+    public enum Action {
         case onAppear
         case didChangeSegment(BookSegment)
         case book(id: Book.State.ID, action: Book.Action)
@@ -39,8 +39,11 @@ struct Library: ReducerProtocol {
         case filteredBooksDeletedAt(indexSet: IndexSet)
     }
     
+    // MARK: init
+    public init() {}
+    
     // MARK: Reducer Body
-    var body: some ReducerProtocol<State, Action> {
+    public var body: some ReducerProtocol<State, Action> {
         Reduce { state, action in
             switch action {
             case .onAppear:
