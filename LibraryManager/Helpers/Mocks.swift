@@ -36,12 +36,15 @@ extension Library.State {
                 wantsToRead: true,
                 isRead: true
             )
-        ]
+        ],
+        newBook: BookDetails.State = .new(),
+        shouldNavigateToNewBook: Bool = false
     ) -> Self {
         .init(
             currentSegment: currentSegment,
             books: books,
-            newBook: .new()
+            newBook: newBook,
+            shouldNavigateToNewBook: shouldNavigateToNewBook
         )
     }
 }
@@ -67,6 +70,26 @@ extension Book.State {
             isRead: isRead
         )
     }
+    
+    public static func new(
+        id: UUID = UUID(),
+        title: String = "",
+        author: String = "",
+        owns: Bool = false,
+        wantsToBuy: Bool = false,
+        wantsToRead: Bool = false,
+        isRead: Bool = false
+    ) -> Self {
+        .init(
+            id: id,
+            title: title,
+            author: author,
+            owns: owns,
+            wantsToBuy: wantsToBuy,
+            wantsToRead: wantsToRead,
+            isRead: isRead
+        )
+    }
 }
 
 // MARK: - BookDetails.State
@@ -77,7 +100,9 @@ extension BookDetails.State {
         .init(book: book, mode: .edit)
     }
     
-    public static func new() -> Self {
-        .init(book: .init(id: UUID(), title: "", author: "", owns: false, wantsToBuy: false, wantsToRead: false, isRead: false), mode: .create)
+    public static func new(
+        book: Book.State = .new()
+    ) -> Self {
+        .init(book: book, mode: .create)
     }
 }

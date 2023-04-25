@@ -50,7 +50,7 @@ final class BookDetailsTests: XCTestCase {
         )
         
         store.send(.didChangeWishlist(true)) {
-            $0.book.owns = true
+            $0.book.wantsToBuy = true
         }
     }
     
@@ -61,7 +61,7 @@ final class BookDetailsTests: XCTestCase {
         )
         
         store.send(.didChangeQueue(true)) {
-            $0.book.owns = true
+            $0.book.wantsToRead = true
         }
     }
     
@@ -71,8 +71,36 @@ final class BookDetailsTests: XCTestCase {
             reducer: BookDetails()
         )
         
-        store.send(.didChangeIsRead(true)) {
-            $0.book.owns = true
+        store.send(.didChangeIsRead(false)) {
+            $0.book.isRead = false
         }
+    }
+    
+    func testNewBookAdded() {
+        let newBookID = UUID()
+        let store = TestStore(
+            initialState: Library.State.mock(newBook: .new(book: .new(id: newBookID))),
+            reducer: Library()
+        )
+    
+        let newBook = Book.State.new(id: newBookID, title: "New Book Title", author: "Me", owns: true, wantsToBuy: true, isRead: false)
+        
+        store.send(.newBookCreated(.didChangeTitle(newBook.title))) {
+            $0.newBook.book.title = newBook.title
+        }
+        
+        store.send(.newBookCreated(.didChangeAuthor(newBook.author))) {
+            $0.newBook.book.author = newBook.author
+        }
+        
+        store.send(.newBookCreated(.didChangeOwnership(newBook.owns))) {
+            $0.newBook.book.owns = newBook.owns
+        }
+        
+        store.send(.newBookCreated(.didChangeWishlist(newBook.wantsToBuy))) {
+            $0.newBook.book.wantsToBuy = newBook.wantsToBuy
+        }
+        
+        XCTAssertEqual(store.state.newBook.book, newBook)
     }
 }
