@@ -50,6 +50,12 @@ struct Book: ReducerProtocol {
     // MARK: Action
     enum Action: Equatable {
         case bookDetails(BookDetails.Action)
+        case didTapQueueSwipe
+        case didTapLibrarySwipe
+        case didTapHaveReadSwipe
+        case didTapRemoveFromLibrary
+        case didTapRemoveFromWishlist
+        case didTapRemoveFromQueue
     }
     
     // MARK: Body
@@ -57,6 +63,25 @@ struct Book: ReducerProtocol {
         Reduce { state, action in
             switch action {
             case .bookDetails(_):
+                return .none
+            case .didTapQueueSwipe:
+                state.wantsToRead.toggle()
+                return .none
+            case .didTapLibrarySwipe:
+                state.owns = true
+                return .none
+            case .didTapHaveReadSwipe:
+                state.isRead = true
+                state.wantsToRead = false
+                return .none
+            case .didTapRemoveFromLibrary:
+                state.owns = false
+                return .none
+            case .didTapRemoveFromWishlist:
+                state.wantsToBuy = false
+                return .none
+            case .didTapRemoveFromQueue:
+                state.wantsToRead = false
                 return .none
             }
         }
@@ -117,11 +142,61 @@ struct BookRow: View {
                     .hidden()
                 }
             }
+            .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                switch fromSegment {
+                case .library:
+                    librarySwipeActions(viewStore: viewStore)
+                case .wishlist:
+                    wishlistSwipeActions(viewStore: viewStore)
+                case .queue:
+                    queueSwipeActions(viewStore: viewStore)
+                }
+            }
             .onTapGesture {
                 isShowingDetailsView.toggle()
             }
             .background(.clear)
             .listRowSeparator(.hidden)
+        }
+    }
+    
+    // MARK: Swipe Actions Views
+    private struct librarySwipeActions: View {
+        @ObservedObject var viewStore: ViewStoreOf<Book>
+        
+        var body: some View {
+            Button("📖") {
+                viewStore.send(.didTapQueueSwipe)
+            }.tint(viewStore.wantsToRead ? .red : .green)
+            Button("📚") {
+                viewStore.send(.didTapRemoveFromLibrary)
+            }.tint(.red)
+        }
+    }
+    
+    private struct wishlistSwipeActions: View {
+        @ObservedObject var viewStore: ViewStoreOf<Book>
+        
+        var body: some View {
+            Button("📚") {
+                viewStore.send(.didTapLibrarySwipe)
+            }.tint(.green)
+            Button("🛍") {
+                viewStore.send(.didTapRemoveFromWishlist)
+            }.tint(.red)
+        }
+    }
+    
+    private struct queueSwipeActions: View {
+        @ObservedObject var viewStore: ViewStoreOf<Book>
+        
+        var body: some View {
+            Button("✔️") {
+                viewStore.send(.didTapHaveReadSwipe)
+            }.tint(.green)
+            Button("📖") {
+                viewStore.send(.didTapRemoveFromQueue)
+            }.tint(.red)
         }
     }
 }
