@@ -39,6 +39,8 @@ public struct Library: ReducerProtocol {
         case filteredBooksDeletedAt(indexSet: IndexSet)
     }
     
+    @Dependency(\.uuid) var uuid
+    
     // MARK: init
     public init() {}
     
@@ -62,11 +64,11 @@ public struct Library: ReducerProtocol {
             case .newBookCreated(.didTapDoneButton):
                 state.shouldNavigateToNewBook = false
                 state.books.append(state.newBook.book)
-                state.newBook = .new()
+                state.newBook = .new(book: .new(id: uuid()))
                 return .none
             case .newBookCreated(.didTapBackButton):
                 state.shouldNavigateToNewBook = false
-                state.newBook = .new()
+                state.newBook = .new(book: .new(id: uuid()))
                 return .none
             case let .filteredBooksDeletedAt(indexSet):
                 indexSet.forEach { index in

@@ -77,13 +77,24 @@ final class BookDetailsTests: XCTestCase {
     }
     
     func testNewBookAdded() {
-        let newBookID = UUID()
-        let store = TestStore(
-            initialState: Library.State.mock(newBook: .new(book: .new(id: newBookID))),
-            reducer: Library()
-        )
+        let initialBookID = UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
+        let store = withDependencies {
+            $0.uuid = .incrementing
+        } operation: {
+            TestStore(
+                initialState: Library.State.mock(newBook: .new(book: .new(id: initialBookID))),
+                reducer: Library()
+            )
+        }
     
-        let newBook = Book.State.new(id: newBookID, title: "New Book Title", author: "Me", owns: true, wantsToBuy: true, isRead: false)
+        let newBook = Book.State.new(
+            id: initialBookID,
+            title: "New Book Title",
+            author: "Me",
+            owns: true,
+            wantsToBuy: true,
+            isRead: false
+        )
         
         store.send(.newBookCreated(.didChangeTitle(newBook.title))) {
             $0.newBook.book.title = newBook.title
@@ -102,5 +113,53 @@ final class BookDetailsTests: XCTestCase {
         }
         
         XCTAssertEqual(store.state.newBook.book, newBook)
+        
+        store.send(.newBookCreated(.didTapDoneButton)) {
+            $0.books.append(newBook)
+            $0.newBook = .new(book: .new(id: initialBookID))
+        }
+    }
+    
+    func testNewBookCreationCancelled() {
+        let initialBookID = UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
+        let store = withDependencies {
+            $0.uuid = .incrementing
+        } operation: {
+            TestStore(
+                initialState: Library.State.mock(newBook: .new(book: .new(id: initialBookID))),
+                reducer: Library()
+            )
+        }
+    
+        let newBook = Book.State.new(
+            id: initialBookID,
+            title: "New Book Title",
+            author: "Me",
+            owns: true,
+            wantsToBuy: true,
+            isRead: false
+        )
+        
+        store.send(.newBookCreated(.didChangeTitle(newBook.title))) {
+            $0.newBook.book.title = newBook.title
+        }
+        
+        store.send(.newBookCreated(.didChangeAuthor(newBook.author))) {
+            $0.newBook.book.author = newBook.author
+        }
+        
+        store.send(.newBookCreated(.didChangeOwnership(newBook.owns))) {
+            $0.newBook.book.owns = newBook.owns
+        }
+        
+        store.send(.newBookCreated(.didChangeWishlist(newBook.wantsToBuy))) {
+            $0.newBook.book.wantsToBuy = newBook.wantsToBuy
+        }
+        
+        XCTAssertEqual(store.state.newBook.book, newBook)
+        
+        store.send(.newBookCreated(.didTapBackButton)) {
+            $0.newBook = .new(book: .new(id: initialBookID))
+        }
     }
 }
