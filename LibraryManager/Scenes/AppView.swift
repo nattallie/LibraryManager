@@ -46,44 +46,47 @@ public struct Library: ReducerProtocol {
     
     // MARK: Reducer Body
     public var body: some ReducerProtocol<State, Action> {
-        Reduce { state, action in
-            switch action {
-            case .onAppear:
-                state.shouldNavigateToNewBook = false
-                return .none
-            case let .didChangeSegment(currentSegment):
-                state.currentSegment = currentSegment
-                return .none
-            case .book:
-                return .none
-            case .didTapAddBook:
-                state.shouldNavigateToNewBook = true
-                return .none
-            case .newBookNavigationActivityChanged:
-                return .none
-            case .newBookCreated(.didTapDoneButton):
-                state.shouldNavigateToNewBook = false
-                state.books.append(state.newBook.book)
-                state.newBook = .new(book: .new(id: uuid()))
-                return .none
-            case .newBookCreated(.didTapBackButton):
-                state.shouldNavigateToNewBook = false
-                state.newBook = .new(book: .new(id: uuid()))
-                return .none
-            case let .filteredBooksDeletedAt(indexSet):
-                indexSet.forEach { index in
-                    state.books.remove(state.filteredBooks[index])
-                }
-                return .none
-            default:
-                return .none
-            }
-        }
+        Reduce(core)
         .forEach(\.books, action: /Action.book(id:action:)) {
           Book()
         }
         Scope(state: \.newBook, action: /Action.newBookCreated) {
             BookDetails()
+        }
+    }
+    
+    // MARK: core Reducer
+    private func core(into state: inout State, action: Action) -> EffectTask<Action> {
+        switch action {
+        case .onAppear:
+            state.shouldNavigateToNewBook = false
+            return .none
+        case let .didChangeSegment(currentSegment):
+            state.currentSegment = currentSegment
+            return .none
+        case .book:
+            return .none
+        case .didTapAddBook:
+            state.shouldNavigateToNewBook = true
+            return .none
+        case .newBookNavigationActivityChanged:
+            return .none
+        case .newBookCreated(.didTapDoneButton):
+            state.shouldNavigateToNewBook = false
+            state.books.append(state.newBook.book)
+            state.newBook = .new(book: .new(id: uuid()))
+            return .none
+        case .newBookCreated(.didTapBackButton):
+            state.shouldNavigateToNewBook = false
+            state.newBook = .new(book: .new(id: uuid()))
+            return .none
+        case let .filteredBooksDeletedAt(indexSet):
+            indexSet.forEach { index in
+                state.books.remove(state.filteredBooks[index])
+            }
+            return .none
+        default:
+            return .none
         }
     }
 }

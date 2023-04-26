@@ -31,31 +31,33 @@ public struct BookDetails: ReducerProtocol {
     // MARK: init
     public init() {}
     
-    // MARK: Reduce
-    public func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
-        switch action {
-        case .didTapBackButton:
-            return .none
-        case .didTapDoneButton:
-            return .none
-        case let .didChangeTitle(title):
-            state.book.title = title
-            return .none
-        case let .didChangeAuthor(author):
-            state.book.author = author
-            return .none
-        case let .didChangeOwnership(owns):
-            state.book.owns = owns
-            return .none
-        case let .didChangeWishlist(wantsToBuy):
-            state.book.wantsToBuy = wantsToBuy
-            return .none
-        case let .didChangeQueue(wantsToRead):
-            state.book.wantsToRead = wantsToRead
-            return .none
-        case let .didChangeIsRead(isRead):
-            state.book.isRead = isRead
-            return .none
+    // MARK: body
+    public var body: some ReducerProtocol<State, Action> {
+        Reduce { state, action in
+            switch action {
+            case .didTapBackButton:
+                return .none
+            case .didTapDoneButton:
+                return .none
+            case let .didChangeTitle(title):
+                state.book.title = title
+                return .none
+            case let .didChangeAuthor(author):
+                state.book.author = author
+                return .none
+            case let .didChangeOwnership(owns):
+                state.book.owns = owns
+                return .none
+            case let .didChangeWishlist(wantsToBuy):
+                state.book.wantsToBuy = wantsToBuy
+                return .none
+            case let .didChangeQueue(wantsToRead):
+                state.book.wantsToRead = wantsToRead
+                return .none
+            case let .didChangeIsRead(isRead):
+                state.book.isRead = isRead
+                return .none
+            }
         }
     }
     

@@ -63,33 +63,36 @@ public struct Book: ReducerProtocol {
     
     // MARK: Body
     public var body: some ReducerProtocol<State, Action> {
-        Reduce { state, action in
-            switch action {
-            case .bookDetails(_):
-                return .none
-            case .didTapQueueSwipe:
-                state.wantsToRead.toggle()
-                return .none
-            case .didTapLibrarySwipe:
-                state.owns = true
-                return .none
-            case .didTapHaveReadSwipe:
-                state.isRead = true
-                state.wantsToRead = false
-                return .none
-            case .didTapRemoveFromLibrary:
-                state.owns = false
-                return .none
-            case .didTapRemoveFromWishlist:
-                state.wantsToBuy = false
-                return .none
-            case .didTapRemoveFromQueue:
-                state.wantsToRead = false
-                return .none
-            }
-        }
+        Reduce(core)
         Scope(state: \.bookDetails, action: /Action.bookDetails) {
             BookDetails()
+        }
+    }
+    
+    // MARK: core reducer
+    private func core(into state: inout State, action: Action) -> EffectTask<Action> {
+        switch action {
+        case .bookDetails(_):
+            return .none
+        case .didTapQueueSwipe:
+            state.wantsToRead.toggle()
+            return .none
+        case .didTapLibrarySwipe:
+            state.owns = true
+            return .none
+        case .didTapHaveReadSwipe:
+            state.isRead = true
+            state.wantsToRead = false
+            return .none
+        case .didTapRemoveFromLibrary:
+            state.owns = false
+            return .none
+        case .didTapRemoveFromWishlist:
+            state.wantsToBuy = false
+            return .none
+        case .didTapRemoveFromQueue:
+            state.wantsToRead = false
+            return .none
         }
     }
 }
