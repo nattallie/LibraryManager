@@ -15,6 +15,7 @@
 		0B47036429F865390010A018 /* BookDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B47036329F865390010A018 /* BookDetailsTests.swift */; };
 		0B769E2429A779BE00B261CC /* LibraryManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B769E2329A779BE00B261CC /* LibraryManagerApp.swift */; };
 		0B769E2829A779BE00B261CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B769E2729A779BE00B261CC /* Assets.xcassets */; };
+		0B99FE3D2A05206B0022E16C /* Library.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0B99FE3B2A05206B0022E16C /* Library.xcdatamodeld */; };
 		0B9D3ED029F665D00046107E /* CheckBoxToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9D3ECF29F665D00046107E /* CheckBoxToggleStyle.swift */; };
 		0BE2ADB629E9AA3500DD2A73 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 0BE2ADB529E9AA3500DD2A73 /* ComposableArchitecture */; };
 		0BE2ADB829E9AFFA00DD2A73 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE2ADB729E9AFFA00DD2A73 /* AppView.swift */; };
@@ -42,6 +43,7 @@
 		0B769E2029A779BE00B261CC /* LibraryManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LibraryManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B769E2329A779BE00B261CC /* LibraryManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryManagerApp.swift; sourceTree = "<group>"; };
 		0B769E2729A779BE00B261CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0B99FE3C2A05206B0022E16C /* Library.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Library.xcdatamodel; sourceTree = "<group>"; };
 		0B9D3ECF29F665D00046107E /* CheckBoxToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxToggleStyle.swift; sourceTree = "<group>"; };
 		0BE2ADB729E9AFFA00DD2A73 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		0BF248DE29F044ED00DC92D6 /* BookDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsView.swift; sourceTree = "<group>"; };
@@ -100,10 +102,19 @@
 				0B769E2329A779BE00B261CC /* LibraryManagerApp.swift */,
 				0BF248DB29F0421800DC92D6 /* Scenes */,
 				0BF248DC29F0422E00DC92D6 /* Views */,
+				0B99FE372A05200E0022E16C /* DataManager */,
 				0BF248DD29F0425C00DC92D6 /* Helpers */,
 				0B769E2729A779BE00B261CC /* Assets.xcassets */,
 			);
 			path = LibraryManager;
+			sourceTree = "<group>";
+		};
+		0B99FE372A05200E0022E16C /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				0B99FE3B2A05206B0022E16C /* Library.xcdatamodeld */,
+			);
+			path = DataManager;
 			sourceTree = "<group>";
 		};
 		0BF248DB29F0421800DC92D6 /* Scenes */ = {
@@ -249,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B21155829EAAA9500BB06CF /* Book.swift in Sources */,
+				0B99FE3D2A05206B0022E16C /* Library.xcdatamodeld in Sources */,
 				0BE2ADB829E9AFFA00DD2A73 /* AppView.swift in Sources */,
 				0B769E2429A779BE00B261CC /* LibraryManagerApp.swift in Sources */,
 				0B21155629EAA2DC00BB06CF /* BookSegment.swift in Sources */,
@@ -527,6 +539,19 @@
 			productName = ComposableArchitecture;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		0B99FE3B2A05206B0022E16C /* Library.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0B99FE3C2A05206B0022E16C /* Library.xcdatamodel */,
+			);
+			currentVersion = 0B99FE3C2A05206B0022E16C /* Library.xcdatamodel */;
+			path = Library.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0B769E1829A779BE00B261CC /* Project object */;
 }
