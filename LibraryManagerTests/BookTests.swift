@@ -16,7 +16,7 @@ final class BookTests: XCTestCase {
             reducer: Book()
         )
         
-        store.send(.didTapAddToQueueSwipe) {
+        store.send(.didTapQueueSwipe) {
             $0.wantsToRead = true
         }
     }
