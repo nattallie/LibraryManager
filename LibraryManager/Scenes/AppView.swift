@@ -39,7 +39,9 @@ public struct Library: ReducerProtocol {
         case filteredBooksDeletedAt(indexSet: IndexSet)
     }
     
+    // MARK: Dependencies
     @Dependency(\.uuid) var uuid
+    @Dependency(\.booksClient) var booksClient
     
     // MARK: init
     public init() {}
@@ -60,6 +62,7 @@ public struct Library: ReducerProtocol {
         switch action {
         case .onAppear:
             state.shouldNavigateToNewBook = false
+            state.books = .init(uniqueElements: booksClient.provider.fetchAllBooks())
             return .none
         case let .didChangeSegment(currentSegment):
             state.currentSegment = currentSegment
@@ -74,6 +77,7 @@ public struct Library: ReducerProtocol {
         case .newBookCreated(.didTapDoneButton):
             state.shouldNavigateToNewBook = false
             state.books.append(state.newBook.book)
+            booksClient.provider.addNewBook(state.newBook.book)
             state.newBook = .new(book: .new(id: uuid()))
             return .none
         case .newBookCreated(.didTapBackButton):
@@ -82,6 +86,7 @@ public struct Library: ReducerProtocol {
             return .none
         case let .filteredBooksDeletedAt(indexSet):
             indexSet.forEach { index in
+                booksClient.provider.removeBook(state.filteredBooks[index])
                 state.books.remove(state.filteredBooks[index])
             }
             return .none

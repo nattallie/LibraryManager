@@ -58,6 +58,9 @@ public struct Book: ReducerProtocol {
         case didTapRemoveFromQueue
     }
     
+    // MARK: Dependencies
+    @Dependency(\.booksClient) var booksClient
+    
     // MARK: init
     public init() {}
     
@@ -76,22 +79,28 @@ public struct Book: ReducerProtocol {
             return .none
         case .didTapQueueSwipe:
             state.wantsToRead.toggle()
+            booksClient.provider.updateBook(state)
             return .none
         case .didTapLibrarySwipe:
             state.owns = true
+            booksClient.provider.updateBook(state)
             return .none
         case .didTapHaveReadSwipe:
             state.isRead = true
             state.wantsToRead = false
+            booksClient.provider.updateBook(state)
             return .none
         case .didTapRemoveFromLibrary:
             state.owns = false
+            booksClient.provider.updateBook(state)
             return .none
         case .didTapRemoveFromWishlist:
             state.wantsToBuy = false
+            booksClient.provider.updateBook(state)
             return .none
         case .didTapRemoveFromQueue:
             state.wantsToRead = false
+            booksClient.provider.updateBook(state)
             return .none
         }
     }

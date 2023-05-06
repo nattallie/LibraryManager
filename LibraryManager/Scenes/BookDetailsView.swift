@@ -28,6 +28,9 @@ public struct BookDetails: ReducerProtocol {
         case didChangeIsRead(_ isRead: Bool)
     }
     
+    // MARK: Dependencies
+    @Dependency(\.booksClient) var booksClient
+    
     // MARK: init
     public init() {}
     
@@ -36,6 +39,9 @@ public struct BookDetails: ReducerProtocol {
         Reduce { state, action in
             switch action {
             case .didTapBackButton:
+                if state.mode == .edit {
+                    booksClient.provider.updateBook(state.book)
+                }
                 return .none
             case .didTapDoneButton:
                 return .none
@@ -238,6 +244,7 @@ struct QuestionWithToggleRow: View {
     }
 }
 
+// MARK: - Preview
 struct BookDetailsView_Preview: PreviewProvider {
     static var previews: some View {
         BookDetailsView(

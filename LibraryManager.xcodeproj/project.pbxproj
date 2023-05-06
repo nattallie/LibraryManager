@@ -10,12 +10,16 @@
 		0B21155629EAA2DC00BB06CF /* BookSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B21155529EAA2DC00BB06CF /* BookSegment.swift */; };
 		0B21155829EAAA9500BB06CF /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B21155729EAAA9500BB06CF /* Book.swift */; };
 		0B21155A29EAD83400BB06CF /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B21155929EAD83400BB06CF /* Mocks.swift */; };
+		0B3D53442A066B220033B692 /* BooksProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3D53432A066B220033B692 /* BooksProvider.swift */; };
+		0B3D53462A066D240033B692 /* BookEntityConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3D53452A066D240033B692 /* BookEntityConverter.swift */; };
 		0B47036029F82A000010A018 /* LibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B47035F29F82A000010A018 /* LibraryTests.swift */; };
 		0B47036229F8612E0010A018 /* BookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B47036129F8612E0010A018 /* BookTests.swift */; };
 		0B47036429F865390010A018 /* BookDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B47036329F865390010A018 /* BookDetailsTests.swift */; };
 		0B769E2429A779BE00B261CC /* LibraryManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B769E2329A779BE00B261CC /* LibraryManagerApp.swift */; };
 		0B769E2829A779BE00B261CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B769E2729A779BE00B261CC /* Assets.xcassets */; };
 		0B99FE3D2A05206B0022E16C /* Library.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0B99FE3B2A05206B0022E16C /* Library.xcdatamodeld */; };
+		0B99FE3F2A0522020022E16C /* BooksClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B99FE3E2A0522020022E16C /* BooksClient.swift */; };
+		0B99FE412A0523080022E16C /* BooksCoreDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B99FE402A0523080022E16C /* BooksCoreDataProvider.swift */; };
 		0B9D3ED029F665D00046107E /* CheckBoxToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9D3ECF29F665D00046107E /* CheckBoxToggleStyle.swift */; };
 		0BE2ADB629E9AA3500DD2A73 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 0BE2ADB529E9AA3500DD2A73 /* ComposableArchitecture */; };
 		0BE2ADB829E9AFFA00DD2A73 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE2ADB729E9AFFA00DD2A73 /* AppView.swift */; };
@@ -36,6 +40,8 @@
 		0B21155529EAA2DC00BB06CF /* BookSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSegment.swift; sourceTree = "<group>"; };
 		0B21155729EAAA9500BB06CF /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		0B21155929EAD83400BB06CF /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
+		0B3D53432A066B220033B692 /* BooksProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksProvider.swift; sourceTree = "<group>"; };
+		0B3D53452A066D240033B692 /* BookEntityConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookEntityConverter.swift; sourceTree = "<group>"; };
 		0B47035F29F82A000010A018 /* LibraryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryTests.swift; sourceTree = "<group>"; };
 		0B47036129F8612E0010A018 /* BookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTests.swift; sourceTree = "<group>"; };
 		0B47036329F865390010A018 /* BookDetailsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsTests.swift; sourceTree = "<group>"; };
@@ -44,6 +50,8 @@
 		0B769E2329A779BE00B261CC /* LibraryManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryManagerApp.swift; sourceTree = "<group>"; };
 		0B769E2729A779BE00B261CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0B99FE3C2A05206B0022E16C /* Library.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Library.xcdatamodel; sourceTree = "<group>"; };
+		0B99FE3E2A0522020022E16C /* BooksClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksClient.swift; sourceTree = "<group>"; };
+		0B99FE402A0523080022E16C /* BooksCoreDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksCoreDataProvider.swift; sourceTree = "<group>"; };
 		0B9D3ECF29F665D00046107E /* CheckBoxToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxToggleStyle.swift; sourceTree = "<group>"; };
 		0BE2ADB729E9AFFA00DD2A73 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		0BF248DE29F044ED00DC92D6 /* BookDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsView.swift; sourceTree = "<group>"; };
@@ -103,6 +111,7 @@
 				0BF248DB29F0421800DC92D6 /* Scenes */,
 				0BF248DC29F0422E00DC92D6 /* Views */,
 				0B99FE372A05200E0022E16C /* DataManager */,
+				0B99FE422A0524000022E16C /* DependencyKeys */,
 				0BF248DD29F0425C00DC92D6 /* Helpers */,
 				0B769E2729A779BE00B261CC /* Assets.xcassets */,
 			);
@@ -113,8 +122,18 @@
 			isa = PBXGroup;
 			children = (
 				0B99FE3B2A05206B0022E16C /* Library.xcdatamodeld */,
+				0B99FE402A0523080022E16C /* BooksCoreDataProvider.swift */,
+				0B3D53432A066B220033B692 /* BooksProvider.swift */,
 			);
 			path = DataManager;
+			sourceTree = "<group>";
+		};
+		0B99FE422A0524000022E16C /* DependencyKeys */ = {
+			isa = PBXGroup;
+			children = (
+				0B99FE3E2A0522020022E16C /* BooksClient.swift */,
+			);
+			path = DependencyKeys;
 			sourceTree = "<group>";
 		};
 		0BF248DB29F0421800DC92D6 /* Scenes */ = {
@@ -140,6 +159,7 @@
 				0B21155529EAA2DC00BB06CF /* BookSegment.swift */,
 				0B21155929EAD83400BB06CF /* Mocks.swift */,
 				0B9D3ECF29F665D00046107E /* CheckBoxToggleStyle.swift */,
+				0B3D53452A066D240033B692 /* BookEntityConverter.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -260,13 +280,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B21155829EAAA9500BB06CF /* Book.swift in Sources */,
+				0B3D53442A066B220033B692 /* BooksProvider.swift in Sources */,
 				0B99FE3D2A05206B0022E16C /* Library.xcdatamodeld in Sources */,
 				0BE2ADB829E9AFFA00DD2A73 /* AppView.swift in Sources */,
+				0B3D53462A066D240033B692 /* BookEntityConverter.swift in Sources */,
+				0B99FE3F2A0522020022E16C /* BooksClient.swift in Sources */,
 				0B769E2429A779BE00B261CC /* LibraryManagerApp.swift in Sources */,
 				0B21155629EAA2DC00BB06CF /* BookSegment.swift in Sources */,
 				0B9D3ED029F665D00046107E /* CheckBoxToggleStyle.swift in Sources */,
 				0BF248DF29F044ED00DC92D6 /* BookDetailsView.swift in Sources */,
 				0B21155A29EAD83400BB06CF /* Mocks.swift in Sources */,
+				0B99FE412A0523080022E16C /* BooksCoreDataProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
