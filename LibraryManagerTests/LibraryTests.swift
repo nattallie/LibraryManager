@@ -40,8 +40,6 @@ final class LibraryTests: XCTestCase {
             reducer: Library()
         )
         
-        store.send(.didTapAddBook) {
-            $0.shouldNavigateToNewBook = true
-        }
+        store.send(.didTapAddBook)
     }
 }

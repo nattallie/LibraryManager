@@ -37,14 +37,12 @@ extension Library.State {
                 isRead: true
             )
         ],
-        newBook: BookDetails.State = .new(),
-        shouldNavigateToNewBook: Bool = false
+        newBook: BookDetails.State = .new()
     ) -> Self {
         .init(
             currentSegment: currentSegment,
             books: books,
-            newBook: newBook,
-            shouldNavigateToNewBook: shouldNavigateToNewBook
+            newBook: newBook
         )
     }
 }

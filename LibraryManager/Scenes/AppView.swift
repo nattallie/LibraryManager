@@ -25,7 +25,6 @@ public struct Library: ReducerProtocol {
             }
         }
         public var newBook: BookDetails.State
-        public var shouldNavigateToNewBook: Bool = false
     }
     
     // MARK: Action
@@ -61,7 +60,6 @@ public struct Library: ReducerProtocol {
     private func core(into state: inout State, action: Action) -> EffectTask<Action> {
         switch action {
         case .onAppear:
-            state.shouldNavigateToNewBook = false
             state.books = .init(uniqueElements: booksClient.provider.fetchAllBooks())
             return .none
         case let .didChangeSegment(currentSegment):
@@ -70,18 +68,15 @@ public struct Library: ReducerProtocol {
         case .book:
             return .none
         case .didTapAddBook:
-            state.shouldNavigateToNewBook = true
             return .none
         case .newBookNavigationActivityChanged:
             return .none
         case .newBookCreated(.didTapDoneButton):
-            state.shouldNavigateToNewBook = false
             state.books.append(state.newBook.book)
             booksClient.provider.addNewBook(state.newBook.book)
             state.newBook = .new(book: .new(id: uuid()))
             return .none
         case .newBookCreated(.didTapBackButton):
-            state.shouldNavigateToNewBook = false
             state.newBook = .new(book: .new(id: uuid()))
             return .none
         case let .filteredBooksDeletedAt(indexSet):
@@ -110,17 +105,15 @@ struct AppView: View {
     // MARK: View State
     struct ViewState: Equatable {
         var currentSegment: BookSegment
-        var shouldNavigateToNewBook: Bool
         
         init(state: Library.State) {
             self.currentSegment = state.currentSegment
-            self.shouldNavigateToNewBook = state.shouldNavigateToNewBook
         }
     }
     
     // MARK: App View Body
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(alignment: .leading) {
                 Picker(
                     "Library",
@@ -145,28 +138,32 @@ struct AppView: View {
                     .scrollContentBackground(.hidden)
                     .background(Color.white.opacity(0.5))
                     .shadow(color: Color.gray.opacity(0.5), radius: 5)
-                NavigationLink(
-                    destination: BookDetailsView(
+                NavigationLink("") {
+                    BookDetailsView(
                         store:
                             store.scope(
                                 state: \.newBook,
                                 action: Library.Action.newBookCreated
                             ),
                         fromSegment: .library
-                    ),
-                    isActive: viewStore.binding(
-                        get: \.shouldNavigateToNewBook,
-                        send: Library.Action.newBookNavigationActivityChanged
                     )
-                ) {
-                    Rectangle().opacity(0)
                 }
-                    .frame(width: 0, height: 0)
-                    .hidden()
             }
             .toolbar(content: {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Add  📗", action: { viewStore.send(.didTapAddBook) })
+                    NavigationLink("Add  📗") {
+                        BookDetailsView(
+                            store:
+                                store.scope(
+                                    state: \.newBook,
+                                    action: Library.Action.newBookCreated
+                                ),
+                            fromSegment: .library
+                        )
+                    }
+                    .onTapGesture {
+                        viewStore.send(.didTapAddBook)
+                    }
                 }
             })
         }

@@ -159,7 +159,7 @@ struct BookDetailsView: View {
                         .cornerRadius(3)
                     if !(viewStore.mode == .edit && fromSegment == .library) {
                         QuestionWithToggleRow(
-                            question: "Do you have \(bookName) ?",
+                            question: "Do you have \(bookName) ?  📚",
                             isOn: Binding(
                                 get: { viewStore.book.owns },
                                 set: { viewStore.send(.didChangeOwnership($0)) }
@@ -169,7 +169,7 @@ struct BookDetailsView: View {
                     }
                     if !(viewStore.mode == .edit && fromSegment == .wishlist) {
                         QuestionWithToggleRow(
-                            question: "Do you want to buy \(bookName) ?",
+                            question: "Do you want to buy \(bookName) ?  🛍",
                             isOn: Binding(
                                 get: { viewStore.book.wantsToBuy },
                                 set: { viewStore.send(.didChangeWishlist($0)) }
@@ -179,7 +179,7 @@ struct BookDetailsView: View {
                     }
                     if !(viewStore.mode == .edit && fromSegment == .queue) {
                         QuestionWithToggleRow(
-                            question: "Do you want to add \(bookName) in Reading Queue ?",
+                            question: "Do you want to add \(bookName) in Reading Queue ?  📖",
                             isOn: Binding(
                                 get: { viewStore.book.wantsToRead },
                                 set: { viewStore.send(.didChangeQueue($0)) }
@@ -188,7 +188,7 @@ struct BookDetailsView: View {
                         .padding(.leading)
                     }
                     QuestionWithToggleRow(
-                        question: "Have you read \(bookName) ?",
+                        question: "Have you read \(bookName) ?  ✔️",
                         isOn: viewStore.binding(get: \.book.isRead, send: BookDetails.Action.didChangeIsRead)
                     )
                         .padding(.leading)
