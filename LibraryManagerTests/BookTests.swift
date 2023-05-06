@@ -16,7 +16,7 @@ final class BookTests: XCTestCase {
             reducer: Book()
         )
         
-        store.send(.didTapQueueSwipe) {
+        store.send(.didTapAddToQueueSwipe) {
             $0.wantsToRead = true
         }
     }
@@ -27,7 +27,7 @@ final class BookTests: XCTestCase {
             reducer: Book()
         )
         
-        store.send(.didTapLibrarySwipe) {
+        store.send(.didTapAddToLibrarySwipe) {
             $0.owns = true
         }
     }

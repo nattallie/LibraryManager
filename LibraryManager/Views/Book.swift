@@ -51,11 +51,12 @@ public struct Book: ReducerProtocol {
     public enum Action: Equatable {
         case bookDetails(BookDetails.Action)
         case didTapQueueSwipe
-        case didTapLibrarySwipe
+        case didTapAddToLibrarySwipe
         case didTapHaveReadSwipe
         case didTapRemoveFromLibrary
         case didTapRemoveFromWishlist
         case didTapRemoveFromQueue
+        case makeUpdate
     }
     
     // MARK: Dependencies
@@ -79,30 +80,35 @@ public struct Book: ReducerProtocol {
             return .none
         case .didTapQueueSwipe:
             state.wantsToRead.toggle()
-            booksClient.provider.updateBook(state)
-            return .none
-        case .didTapLibrarySwipe:
+            return .init(value: .makeUpdate)
+        case .didTapAddToLibrarySwipe:
             state.owns = true
-            booksClient.provider.updateBook(state)
-            return .none
+            return .init(value: .makeUpdate)
         case .didTapHaveReadSwipe:
             state.isRead = true
             state.wantsToRead = false
-            booksClient.provider.updateBook(state)
-            return .none
+            return .init(value: .makeUpdate)
         case .didTapRemoveFromLibrary:
             state.owns = false
-            booksClient.provider.updateBook(state)
-            return .none
+            return .init(value: .makeUpdate)
         case .didTapRemoveFromWishlist:
             state.wantsToBuy = false
-            booksClient.provider.updateBook(state)
-            return .none
+            return .init(value: .makeUpdate)
         case .didTapRemoveFromQueue:
             state.wantsToRead = false
-            booksClient.provider.updateBook(state)
+            return .init(value: .makeUpdate)
+        case .makeUpdate:
+            if isRemovedFromAllSegments(state) {
+                booksClient.provider.removeBook(state.bookDetails.book)
+            } else {
+                booksClient.provider.updateBook(state.bookDetails.book)
+            }
             return .none
         }
+    }
+    
+    private func isRemovedFromAllSegments(_ state: State) -> Bool {
+        !state.owns && !state.wantsToBuy && !state.wantsToRead
     }
 }
 
@@ -192,7 +198,7 @@ struct BookRow: View {
         
         var body: some View {
             Button("📚") {
-                viewStore.send(.didTapLibrarySwipe)
+                viewStore.send(.didTapAddToLibrarySwipe)
             }.tint(.green)
             Button("🛍") {
                 viewStore.send(.didTapRemoveFromWishlist)
