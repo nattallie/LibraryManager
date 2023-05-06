@@ -151,6 +151,7 @@ struct BookRow: View {
                                 fromSegment: fromSegment
                             )
                         }
+                        .frame(width: 0, height: 0)
                         .hidden()
                 }
             }

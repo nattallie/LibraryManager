@@ -241,6 +241,9 @@ struct QuestionWithToggleRow: View {
                 .toggleStyle(.checkmark)
         }
         .frame(alignment: .trailing)
+        .onTapGesture {
+            isOn.toggle()
+        }
     }
 }
 
