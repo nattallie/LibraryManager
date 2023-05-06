@@ -12,6 +12,7 @@
 		0B21155A29EAD83400BB06CF /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B21155929EAD83400BB06CF /* Mocks.swift */; };
 		0B3D53442A066B220033B692 /* BooksProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3D53432A066B220033B692 /* BooksProvider.swift */; };
 		0B3D53462A066D240033B692 /* BookEntityConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3D53452A066D240033B692 /* BookEntityConverter.swift */; };
+		0B3D534A2A0674FB0033B692 /* BooksTestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3D53492A0674FB0033B692 /* BooksTestProvider.swift */; };
 		0B47036029F82A000010A018 /* LibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B47035F29F82A000010A018 /* LibraryTests.swift */; };
 		0B47036229F8612E0010A018 /* BookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B47036129F8612E0010A018 /* BookTests.swift */; };
 		0B47036429F865390010A018 /* BookDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B47036329F865390010A018 /* BookDetailsTests.swift */; };
@@ -42,6 +43,7 @@
 		0B21155929EAD83400BB06CF /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
 		0B3D53432A066B220033B692 /* BooksProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksProvider.swift; sourceTree = "<group>"; };
 		0B3D53452A066D240033B692 /* BookEntityConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookEntityConverter.swift; sourceTree = "<group>"; };
+		0B3D53492A0674FB0033B692 /* BooksTestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksTestProvider.swift; sourceTree = "<group>"; };
 		0B47035F29F82A000010A018 /* LibraryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryTests.swift; sourceTree = "<group>"; };
 		0B47036129F8612E0010A018 /* BookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTests.swift; sourceTree = "<group>"; };
 		0B47036329F865390010A018 /* BookDetailsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsTests.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				0B99FE3B2A05206B0022E16C /* Library.xcdatamodeld */,
 				0B99FE402A0523080022E16C /* BooksCoreDataProvider.swift */,
 				0B3D53432A066B220033B692 /* BooksProvider.swift */,
+				0B3D53492A0674FB0033B692 /* BooksTestProvider.swift */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				0B21155629EAA2DC00BB06CF /* BookSegment.swift in Sources */,
 				0B9D3ED029F665D00046107E /* CheckBoxToggleStyle.swift in Sources */,
 				0BF248DF29F044ED00DC92D6 /* BookDetailsView.swift in Sources */,
+				0B3D534A2A0674FB0033B692 /* BooksTestProvider.swift in Sources */,
 				0B21155A29EAD83400BB06CF /* Mocks.swift in Sources */,
 				0B99FE412A0523080022E16C /* BooksCoreDataProvider.swift in Sources */,
 			);

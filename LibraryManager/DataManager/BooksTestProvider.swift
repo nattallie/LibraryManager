@@ -1,33 +1,36 @@
 //
-//  CoreDataProvider.swift
+//  BooksTestProvider.swift
 //  LibraryManager
 //
-//  Created by Nata Khurtsidze on 05.05.23.
+//  Created by Nata Khurtsidze on 06.05.23.
 //
 
 import CoreData
 import Foundation
 
-// MARK: - Books Core Data Provider
-public class BooksCoreDataProvider: BooksProvider {
-    public static let shared: BooksCoreDataProvider = .init()
-    private let container: NSPersistentContainer = NSPersistentContainer(name: containerName)
+// MARK: - Books Test Provider
+public class BooksTestProvider: BooksProvider {
+    public static let shared: BooksTestProvider = .init()
+    private let container: NSPersistentContainer
 
     // MARK: private consts
     private static let containerName: String = "Library"
     private static let entityName: String = "BookEntity"
-    
-    // MARK: init
+
     private init() {
+        let description = NSPersistentStoreDescription()
+        description.url = URL(fileURLWithPath: "/dev/null")
+        container = NSPersistentContainer(name: BooksTestProvider.containerName)
+        container.persistentStoreDescriptions = [description]
         container.loadPersistentStores { description, error in
             if error != nil {
                 print("Error occured while loading store: \(description)")
             }
         }
     }
-    
+
     public func fetchAllBooks() -> [Book.State] {
-        let request: NSFetchRequest<BookEntity> = .init(entityName: BooksCoreDataProvider.entityName)
+        let request: NSFetchRequest<BookEntity> = .init(entityName: BooksTestProvider.entityName)
         do {
             let books = try container.viewContext.fetch(request)
             return books.compactMap { Book.State.from($0) }
@@ -36,19 +39,19 @@ public class BooksCoreDataProvider: BooksProvider {
             return []
         }
     }
-    
+
     public func addNewBook(_ newBook: Book.State) {
         let bookEntity: BookEntity = .init(context: container.viewContext)
         bookEntity.from(newBook)
         container.viewContext.insert(bookEntity)
-        
+
         do {
             try container.viewContext.save()
         } catch {
             print("Error occured while saving new book", error)
         }
     }
-    
+
     public func updateBook(_ book: Book.State) {
         do {
             guard let oldBook = try fetchBookEntityWith(id: book.id) else { return }
@@ -58,7 +61,7 @@ public class BooksCoreDataProvider: BooksProvider {
             print("Error occured while updating existing book", error)
         }
     }
-    
+
     public func removeBook(_ book: Book.State) {
         do {
             guard let oldBook = try fetchBookEntityWith(id: book.id) else { return }
@@ -68,9 +71,9 @@ public class BooksCoreDataProvider: BooksProvider {
             print("Error occured while deleting book", error)
         }
     }
-    
+
     private func fetchBookEntityWith(id: UUID) throws -> BookEntity? {
-        let fetchRequest = NSFetchRequest<BookEntity>(entityName: BooksCoreDataProvider.entityName)
+        let fetchRequest = NSFetchRequest<BookEntity>(entityName: BooksTestProvider.entityName)
         fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
         return try container.viewContext.fetch(fetchRequest).first
     }
