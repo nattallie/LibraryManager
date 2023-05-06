@@ -140,21 +140,18 @@ struct BookRow: View {
                         }
                         .frame(alignment: .trailing)
                     }
-                    NavigationLink(
-                        destination: BookDetailsView(
-                            store:
-                                store.scope(
-                                    state: \.bookDetails,
-                                    action: Book.Action.bookDetails
-                                ),
-                            fromSegment: fromSegment
-                        ),
-                        isActive: $isShowingDetailsView
-                    ) {
-                        Rectangle().opacity(0)
-                    }
-                    .frame(width: 0, height: 0)
-                    .hidden()
+                    NavigationLink("", value: "")
+                        .navigationDestination(isPresented: $isShowingDetailsView) {
+                            BookDetailsView(
+                                store:
+                                    store.scope(
+                                        state: \.bookDetails,
+                                        action: Book.Action.bookDetails
+                                    ),
+                                fromSegment: fromSegment
+                            )
+                        }
+                        .hidden()
                 }
             }
             .swipeActions(edge: .leading, allowsFullSwipe: false) {
