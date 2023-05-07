@@ -115,6 +115,10 @@ public struct AppView: View {
     public var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
+                Text("Library Manager")
+                    .padding(.horizontal, 20)
+                    .font(.title)
+                    .fontWeight(.semibold)
                 Picker(
                     "Library",
                     selection:
@@ -126,7 +130,7 @@ public struct AppView: View {
                     }
                 }
                     .pickerStyle(.segmented)
-                    .padding(.top, 20)
+                    .padding(.top, 10)
                     .padding(.horizontal)
                 List {
                     ForEachStore(store.scope(state: \.filteredBooks, action: Library.Action.book(id:action:))) {
