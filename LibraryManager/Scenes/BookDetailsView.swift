@@ -147,6 +147,7 @@ struct BookDetailsView: View {
                         .textFieldStyle(.roundedBorder)
                         .border(Color.black)
                         .cornerRadius(3)
+                        .autocorrectionDisabled(true)
                     TextField(
                         "Author",
                         text: Binding(
@@ -157,6 +158,7 @@ struct BookDetailsView: View {
                         .textFieldStyle(.roundedBorder)
                         .border(Color.black)
                         .cornerRadius(3)
+                        .autocorrectionDisabled(true)
                     if !(viewStore.mode == .edit && fromSegment == .library) {
                         QuestionWithToggleRow(
                             question: "Do you have \(bookName) ?  📚",

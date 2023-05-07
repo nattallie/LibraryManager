@@ -37,12 +37,14 @@ extension Library.State {
                 isRead: true
             )
         ],
-        newBook: BookDetails.State = .new()
+        newBook: BookDetails.State = .new(),
+        searchText: String = ""
     ) -> Self {
         .init(
             currentSegment: currentSegment,
             books: books,
-            newBook: newBook
+            newBook: newBook,
+            searchText: searchText
         )
     }
 }
