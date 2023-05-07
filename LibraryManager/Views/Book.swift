@@ -83,6 +83,7 @@ public struct Book: ReducerProtocol {
             return .init(value: .makeUpdate)
         case .didTapAddToLibrarySwipe:
             state.owns = true
+            state.wantsToBuy = false
             return .init(value: .makeUpdate)
         case .didTapHaveReadSwipe:
             state.isRead = true

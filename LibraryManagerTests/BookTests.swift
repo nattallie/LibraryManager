@@ -25,12 +25,13 @@ final class BookTests: XCTestCase {
     
     func testLibrarySwipe() {
         let store = TestStore(
-            initialState: Book.State.mock(owns: false),
+            initialState: Book.State.mock(owns: false, wantsToBuy: true),
             reducer: Book()
         )
         
         store.send(.didTapAddToLibrarySwipe) {
             $0.owns = true
+            $0.wantsToBuy = false
         }
         
         store.receive(.makeUpdate)
@@ -38,12 +39,13 @@ final class BookTests: XCTestCase {
     
     func testHaveReadSwipe() {
         let store = TestStore(
-            initialState: Book.State.mock(isRead: false),
+            initialState: Book.State.mock(wantsToRead: true, isRead: false),
             reducer: Book()
         )
         
         store.send(.didTapHaveReadSwipe) {
             $0.isRead = true
+            $0.wantsToRead = false
         }
         
         store.receive(.makeUpdate)
