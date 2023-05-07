@@ -114,11 +114,7 @@ public struct AppView: View {
     // MARK: App View Body
     public var body: some View {
         NavigationStack {
-            VStack(alignment: .leading) {
-                Text("Library Manager")
-                    .padding(.horizontal, 20)
-                    .font(.title)
-                    .fontWeight(.semibold)
+            VStack(alignment: .leading) { 
                 Picker(
                     "Library",
                     selection:

@@ -85,7 +85,7 @@ struct BookDetailsView: View {
     var screenTitle: String {
         viewStore.book.title.isEmpty ?
             "New Book" :
-            "\(viewStore.book.title) - \(viewStore.book.author)"
+            "Book Details"
     }
     
     var bookName: String {
@@ -131,11 +131,10 @@ struct BookDetailsView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                if !viewStore.book.title.isEmpty {
-                    Text(screenTitle)
-                        .font(.system(size: 20))
-                        .padding(.vertical, 15)
-                }
+                Text(screenTitle)
+                    .font(.system(size: 24))
+                    .fontWeight(.semibold)
+                    .padding(.bottom, 15)
                 VStack(alignment: .leading, spacing: 20) {
                     TextField(
                         "Book Title",
@@ -209,7 +208,6 @@ struct BookDetailsView: View {
                         }
                     ) {
                         Image(systemName: "chevron.left")
-                        
                     }
                     .disabled(backButtonIsDisabled),
                 trailing: Button(
