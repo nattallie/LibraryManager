@@ -92,18 +92,18 @@ public struct Library: ReducerProtocol {
 }
 
 // MARK: - App View
-struct AppView: View {
+public struct AppView: View {
     let store: StoreOf<Library>
     @ObservedObject var viewStore: ViewStore<ViewState, Library.Action>
     
     // MARK: init
-    init(store: StoreOf<Library>) {
+    public init(store: StoreOf<Library>) {
         self.store = store
         viewStore = ViewStore(store.scope(state: ViewState.init(state:)))
     }
     
     // MARK: View State
-    struct ViewState: Equatable {
+    public struct ViewState: Equatable {
         var currentSegment: BookSegment
         
         init(state: Library.State) {
@@ -112,7 +112,7 @@ struct AppView: View {
     }
     
     // MARK: App View Body
-    var body: some View {
+    public var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
                 Picker(
