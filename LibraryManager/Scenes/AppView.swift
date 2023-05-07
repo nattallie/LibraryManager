@@ -17,26 +17,20 @@ public struct Library: ReducerProtocol {
         public var filteredBooks: IdentifiedArrayOf<Book.State> {
             switch currentSegment {
             case .library:
-                return books.filter { $0.owns && isInSearchResults($0) }
+                return books.filter { $0.owns }
             case .wishlist:
-                return books.filter { $0.wantsToBuy && isInSearchResults($0) }
+                return books.filter { $0.wantsToBuy }
             case .queue:
-                return books.filter { $0.wantsToRead && isInSearchResults($0) }
+                return books.filter { $0.wantsToRead }
             }
         }
         public var newBook: BookDetails.State
-        public var searchText: String
-        
-        private func isInSearchResults(_ book: Book.State) -> Bool {
-            searchText.isEmpty || (book.title.contains(searchText) || book.author.contains(searchText))
-        }
     }
     
     // MARK: Action
     public enum Action {
         case onAppear
         case didChangeSegment(BookSegment)
-        case didChangeSearchText(text: String)
         case book(id: Book.State.ID, action: Book.Action)
         case didTapAddBook
         case newBookCreated(BookDetails.Action)
@@ -91,9 +85,6 @@ public struct Library: ReducerProtocol {
                 state.books.remove(state.filteredBooks[index])
             }
             return .none
-        case let .didChangeSearchText(text):
-            state.searchText = text
-            return .none
         default:
             return .none
         }
@@ -114,11 +105,9 @@ public struct AppView: View {
     // MARK: View State
     public struct ViewState: Equatable {
         var currentSegment: BookSegment
-        var searchText: String
         
         init(state: Library.State) {
             self.currentSegment = state.currentSegment
-            self.searchText = state.searchText
         }
     }
     
@@ -149,7 +138,6 @@ public struct AppView: View {
                     .scrollContentBackground(.hidden)
                     .background(Color.white.opacity(0.5))
                     .shadow(color: Color.gray.opacity(0.5), radius: 5)
-                    .searchable(text: viewStore.binding(get: \.searchText, send: Library.Action.didChangeSearchText(text:)))
                 NavigationLink("") {
                     BookDetailsView(
                         store:
