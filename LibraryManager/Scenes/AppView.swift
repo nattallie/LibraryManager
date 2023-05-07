@@ -21,7 +21,7 @@ public struct Library: ReducerProtocol {
             case .wishlist:
                 return .init(uniqueElements: books.filter { $0.wantsToBuy }.sorted(by: { $0.author < $1.author} ))
             case .queue:
-                return .init(uniqueElements: books.filter { $0.owns }.sorted(by: { $0.author < $1.author} ))
+                return .init(uniqueElements: books.filter { $0.wantsToRead }.sorted(by: { $0.author < $1.author} ))
             }
         }
         public var newBook: BookDetails.State
