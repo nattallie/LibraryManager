@@ -17,11 +17,11 @@ public struct Library: ReducerProtocol {
         public var filteredBooks: IdentifiedArrayOf<Book.State> {
             switch currentSegment {
             case .library:
-                return books.filter { $0.owns }
+                return .init(uniqueElements: books.filter { $0.owns }.sorted(by: { $0.author < $1.author} ))
             case .wishlist:
-                return books.filter { $0.wantsToBuy }
+                return .init(uniqueElements: books.filter { $0.wantsToBuy }.sorted(by: { $0.author < $1.author} ))
             case .queue:
-                return books.filter { $0.wantsToRead }
+                return .init(uniqueElements: books.filter { $0.owns }.sorted(by: { $0.author < $1.author} ))
             }
         }
         public var newBook: BookDetails.State
