@@ -56,7 +56,6 @@ public struct Book: ReducerProtocol {
         case didTapRemoveFromLibrary
         case didTapRemoveFromWishlist
         case didTapRemoveFromQueue
-        case makeUpdate
     }
     
     // MARK: Dependencies
@@ -80,31 +79,38 @@ public struct Book: ReducerProtocol {
             return .none
         case .didTapQueueSwipe:
             state.wantsToRead.toggle()
-            return .init(value: .makeUpdate)
+            makeUpdate(state: &state)
+            return .none
         case .didTapAddToLibrarySwipe:
             state.owns = true
             state.wantsToBuy = false
-            return .init(value: .makeUpdate)
+            makeUpdate(state: &state)
+            return .none
         case .didTapHaveReadSwipe:
             state.isRead = true
             state.wantsToRead = false
-            return .init(value: .makeUpdate)
+            makeUpdate(state: &state)
+            return .none
         case .didTapRemoveFromLibrary:
             state.owns = false
-            return .init(value: .makeUpdate)
+            makeUpdate(state: &state)
+            return .none
         case .didTapRemoveFromWishlist:
             state.wantsToBuy = false
-            return .init(value: .makeUpdate)
+            makeUpdate(state: &state)
+            return .none
         case .didTapRemoveFromQueue:
             state.wantsToRead = false
-            return .init(value: .makeUpdate)
-        case .makeUpdate:
-            if isRemovedFromAllSegments(state) {
-                booksClient.provider.removeBook(state.bookDetails.book)
-            } else {
-                booksClient.provider.updateBook(state.bookDetails.book)
-            }
+            makeUpdate(state: &state)
             return .none
+        }
+    }
+    
+    private func makeUpdate(state: inout State) {
+        if isRemovedFromAllSegments(state) {
+            booksClient.provider.removeBook(state.bookDetails.book)
+        } else {
+            booksClient.provider.updateBook(state.bookDetails.book)
         }
     }
     

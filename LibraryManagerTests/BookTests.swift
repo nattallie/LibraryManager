@@ -19,8 +19,6 @@ final class BookTests: XCTestCase {
         store.send(.didTapQueueSwipe) {
             $0.wantsToRead = true
         }
-        
-        store.receive(.makeUpdate)
     }
     
     func testLibrarySwipe() {
@@ -33,8 +31,6 @@ final class BookTests: XCTestCase {
             $0.owns = true
             $0.wantsToBuy = false
         }
-        
-        store.receive(.makeUpdate)
     }
     
     func testHaveReadSwipe() {
@@ -47,8 +43,6 @@ final class BookTests: XCTestCase {
             $0.isRead = true
             $0.wantsToRead = false
         }
-        
-        store.receive(.makeUpdate)
     }
     
     func testRemoveFromLibrary() {
@@ -60,8 +54,6 @@ final class BookTests: XCTestCase {
         store.send(.didTapRemoveFromLibrary) {
             $0.owns = false
         }
-        
-        store.receive(.makeUpdate)
     }
     
     func testRemoveFromWishlist() {
@@ -73,8 +65,6 @@ final class BookTests: XCTestCase {
         store.send(.didTapRemoveFromWishlist) {
             $0.wantsToBuy = false
         }
-        
-        store.receive(.makeUpdate)
     }
     
     func testRemoveFromQueue() {
@@ -86,7 +76,5 @@ final class BookTests: XCTestCase {
         store.send(.didTapRemoveFromQueue) {
             $0.wantsToRead = false
         }
-        
-        store.receive(.makeUpdate)
     }
 }
