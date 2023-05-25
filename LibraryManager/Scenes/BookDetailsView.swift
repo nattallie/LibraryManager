@@ -76,8 +76,7 @@ public struct BookDetails: ReducerProtocol {
 
 // MARK: - Book Details View
 struct BookDetailsView: View {
-    let store: StoreOf<BookDetails>
-    @ObservedObject var viewStore: ViewStore<BookDetails.State, BookDetails.Action>
+    @ObservedObject var viewStore: ViewStoreOf<BookDetails>
     var fromSegment: BookSegment
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
@@ -121,9 +120,8 @@ struct BookDetailsView: View {
     }
     
     // MARK: init
-    init(store: StoreOf<BookDetails>, fromSegment: BookSegment) {
-        self.store = store
-        self.viewStore = ViewStore(store)
+    init(viewStore: ViewStoreOf<BookDetails>, fromSegment: BookSegment) {
+        self.viewStore = viewStore
         self.fromSegment = fromSegment
     }
     
@@ -251,11 +249,12 @@ struct QuestionWithToggleRow: View {
 struct BookDetailsView_Preview: PreviewProvider {
     static var previews: some View {
         BookDetailsView(
-            store:
+            viewStore: ViewStore(
                 .init(
                     initialState: BookDetails.State.mock(),
                     reducer: BookDetails()
-                ),
+                )
+            ),
             fromSegment: .library
         )
     }

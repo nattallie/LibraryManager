@@ -156,11 +156,12 @@ struct BookRow: View {
                     NavigationLink("", value: "")
                         .navigationDestination(isPresented: $isShowingDetailsView) {
                             BookDetailsView(
-                                store:
+                                viewStore: ViewStore(
                                     store.scope(
                                         state: \.bookDetails,
                                         action: Book.Action.bookDetails
-                                    ),
+                                    )
+                                ),
                                 fromSegment: fromSegment
                             )
                         }

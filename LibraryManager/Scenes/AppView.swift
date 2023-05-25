@@ -140,11 +140,12 @@ public struct AppView: View {
                     .shadow(color: Color.gray.opacity(0.5), radius: 5)
                 NavigationLink("") {
                     BookDetailsView(
-                        store:
+                        viewStore: ViewStore(
                             store.scope(
                                 state: \.newBook,
                                 action: Library.Action.newBookCreated
-                            ),
+                            )
+                        ),
                         fromSegment: .library
                     )
                 }
@@ -153,11 +154,12 @@ public struct AppView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink("Add  📗") {
                         BookDetailsView(
-                            store:
+                            viewStore: ViewStore(
                                 store.scope(
                                     state: \.newBook,
                                     action: Library.Action.newBookCreated
-                                ),
+                                )
+                            ),
                             fromSegment: .library
                         )
                     }
