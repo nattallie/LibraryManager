@@ -15,7 +15,6 @@ public class BooksCoreDataProvider: BooksProvider {
 
     // MARK: private consts
     private static let containerName: String = "Library"
-    private static let entityName: String = "BookEntity"
     
     // MARK: init
     private init() {
@@ -27,7 +26,8 @@ public class BooksCoreDataProvider: BooksProvider {
     }
     
     public func fetchAllBooks() -> [Book.State] {
-        let request: NSFetchRequest<BookEntity> = .init(entityName: BooksCoreDataProvider.entityName)
+        let request: NSFetchRequest<BookEntity> = BookEntity.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(BookEntity.author), ascending: true)]
         do {
             let books = try container.viewContext.fetch(request)
             return books.compactMap { Book.State.from($0) }
@@ -70,7 +70,7 @@ public class BooksCoreDataProvider: BooksProvider {
     }
     
     private func fetchBookEntityWith(id: UUID) throws -> BookEntity? {
-        let fetchRequest = NSFetchRequest<BookEntity>(entityName: BooksCoreDataProvider.entityName)
+        let fetchRequest: NSFetchRequest<BookEntity> = BookEntity.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
         return try container.viewContext.fetch(fetchRequest).first
     }
