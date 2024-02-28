@@ -1,19 +1,19 @@
 //
-//  BookTests.swift
+//  BookRowTests.swift
 //  LibraryManagerTests
 //
-//  Created by Nata Khurtsidze on 25.04.23.
+//  Created by Nata Khurtsidze on 29.02.24.
 //
 
-import XCTest
-import LibraryManager
 import ComposableArchitecture
+import LibraryManager
+import XCTest
 
-final class BookTests: XCTestCase {
+final class BookRowTests: XCTestCase {
     func testQueueSwipe() {
         let store = TestStore(
-            initialState: Book.State.mock(),
-            reducer: Book()
+            initialState: BookRowReducer.State.mock(),
+            reducer: BookRowReducer()
         )
         
         store.send(.didTapQueueSwipe) {
@@ -23,8 +23,8 @@ final class BookTests: XCTestCase {
     
     func testLibrarySwipe() {
         let store = TestStore(
-            initialState: Book.State.mock(owns: false, wantsToBuy: true),
-            reducer: Book()
+            initialState: BookRowReducer.State.mock(owns: false, wantsToBuy: true),
+            reducer: BookRowReducer()
         )
         
         store.send(.didTapAddToLibrarySwipe) {
@@ -35,8 +35,8 @@ final class BookTests: XCTestCase {
     
     func testHaveReadSwipe() {
         let store = TestStore(
-            initialState: Book.State.mock(wantsToRead: true, isRead: false),
-            reducer: Book()
+            initialState: BookRowReducer.State.mock(wantsToRead: true, isRead: false),
+            reducer: BookRowReducer()
         )
         
         store.send(.didTapHaveReadSwipe) {
@@ -47,8 +47,8 @@ final class BookTests: XCTestCase {
     
     func testRemoveFromLibrary() {
         let store = TestStore(
-            initialState: Book.State.mock(owns: true),
-            reducer: Book()
+            initialState: BookRowReducer.State.mock(owns: true),
+            reducer: BookRowReducer()
         )
         
         store.send(.didTapRemoveFromLibrary) {
@@ -58,8 +58,8 @@ final class BookTests: XCTestCase {
     
     func testRemoveFromWishlist() {
         let store = TestStore(
-            initialState: Book.State.mock(wantsToBuy: true),
-            reducer: Book()
+            initialState: BookRowReducer.State.mock(wantsToBuy: true),
+            reducer: BookRowReducer()
         )
         
         store.send(.didTapRemoveFromWishlist) {
@@ -69,8 +69,8 @@ final class BookTests: XCTestCase {
     
     func testRemoveFromQueue() {
         let store = TestStore(
-            initialState: Book.State.mock(wantsToRead: true),
-            reducer: Book()
+            initialState: BookRowReducer.State.mock(wantsToRead: true),
+            reducer: BookRowReducer()
         )
         
         store.send(.didTapRemoveFromQueue) {

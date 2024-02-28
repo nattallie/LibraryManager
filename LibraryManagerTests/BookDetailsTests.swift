@@ -5,15 +5,15 @@
 //  Created by Nata Khurtsidze on 25.04.23.
 //
 
-import XCTest
-import LibraryManager
 import ComposableArchitecture
+import LibraryManager
+import XCTest
 
 final class BookDetailsTests: XCTestCase {
     func testTitleChanged() {
         let store = TestStore(
-            initialState: BookDetails.State.mock(),
-            reducer: BookDetails()
+            initialState: BookDetailsReducer.State.mock(),
+            reducer: BookDetailsReducer()
         )
         
         store.send(.didChangeTitle("New Book Title")) {
@@ -23,8 +23,8 @@ final class BookDetailsTests: XCTestCase {
     
     func testAuthorChanged() {
         let store = TestStore(
-            initialState: BookDetails.State.mock(),
-            reducer: BookDetails()
+            initialState: BookDetailsReducer.State.mock(),
+            reducer: BookDetailsReducer()
         )
         
         store.send(.didChangeAuthor("Me")) {
@@ -34,8 +34,8 @@ final class BookDetailsTests: XCTestCase {
     
     func testOwnershipChanged() {
         let store = TestStore(
-            initialState: BookDetails.State.mock(),
-            reducer: BookDetails()
+            initialState: BookDetailsReducer.State.mock(),
+            reducer: BookDetailsReducer()
         )
         
         store.send(.didChangeOwnership(false)) {
@@ -45,8 +45,8 @@ final class BookDetailsTests: XCTestCase {
     
     func testWishlistChanged() {
         let store = TestStore(
-            initialState: BookDetails.State.mock(),
-            reducer: BookDetails()
+            initialState: BookDetailsReducer.State.mock(),
+            reducer: BookDetailsReducer()
         )
         
         store.send(.didChangeWishlist(true)) {
@@ -56,8 +56,8 @@ final class BookDetailsTests: XCTestCase {
     
     func testQueueChanged() {
         let store = TestStore(
-            initialState: BookDetails.State.mock(),
-            reducer: BookDetails()
+            initialState: BookDetailsReducer.State.mock(),
+            reducer: BookDetailsReducer()
         )
         
         store.send(.didChangeQueue(true)) {
@@ -67,8 +67,8 @@ final class BookDetailsTests: XCTestCase {
     
     func testIsReadChanged() {
         let store = TestStore(
-            initialState: BookDetails.State.mock(),
-            reducer: BookDetails()
+            initialState: BookDetailsReducer.State.mock(),
+            reducer: BookDetailsReducer()
         )
         
         store.send(.didChangeIsRead(false)) {
@@ -82,12 +82,12 @@ final class BookDetailsTests: XCTestCase {
             $0.uuid = .incrementing
         } operation: {
             TestStore(
-                initialState: Library.State.mock(newBook: .new(book: .new(id: initialBookID))),
-                reducer: Library()
+                initialState: LibraryReducer.State.mock(newBook: .new(book: .new(id: initialBookID))),
+                reducer: LibraryReducer()
             )
         }
     
-        let newBook = Book.State.new(
+        let newBook = BookRowReducer.State.new(
             id: initialBookID,
             title: "New Book Title",
             author: "Me",
@@ -126,12 +126,12 @@ final class BookDetailsTests: XCTestCase {
             $0.uuid = .incrementing
         } operation: {
             TestStore(
-                initialState: Library.State.mock(newBook: .new(book: .new(id: initialBookID))),
-                reducer: Library()
+                initialState: LibraryReducer.State.mock(newBook: .new(book: .new(id: initialBookID))),
+                reducer: LibraryReducer()
             )
         }
     
-        let newBook = Book.State.new(
+        let newBook = BookRowReducer.State.new(
             id: initialBookID,
             title: "New Book Title",
             author: "Me",

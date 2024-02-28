@@ -1,21 +1,19 @@
 //
-//  LibraryTests.swift
+//  LibraryReducerTests.swift
 //  LibraryManagerTests
 //
-//  Created by Nata Khurtsidze on 25.04.23.
+//  Created by Nata Khurtsidze on 29.02.24.
 //
 
-import XCTest
-
-import XCTest
-import LibraryManager
 import ComposableArchitecture
+import LibraryManager
+import XCTest
 
-final class LibraryTests: XCTestCase {
+final class LibraryReducerTests: XCTestCase {
     func testSegmentSwitching() {
         let store = TestStore(
-            initialState: Library.State.mock(),
-            reducer: Library()
+            initialState: LibraryReducer.State.mock(),
+            reducer: LibraryReducer()
         )
 
         store.send(.didChangeSegment(.wishlist)) {
@@ -25,8 +23,8 @@ final class LibraryTests: XCTestCase {
     
     func testDeletionActions() {
         let store = TestStore(
-            initialState: Library.State.mock(),
-            reducer: Library()
+            initialState: LibraryReducer.State.mock(),
+            reducer: LibraryReducer()
         )
         
         store.send(.filteredBooksDeletedAt(indexSet: .init(arrayLiteral: 0))) {
@@ -36,8 +34,8 @@ final class LibraryTests: XCTestCase {
     
     func testAddNewBook() {
         let store = TestStore(
-            initialState: Library.State.mock(),
-            reducer: Library()
+            initialState: LibraryReducer.State.mock(),
+            reducer: LibraryReducer()
         )
         
         store.send(.didTapAddBook)
