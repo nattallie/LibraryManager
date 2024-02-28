@@ -118,3 +118,61 @@ public struct BookRowReducer: ReducerProtocol {
         !state.owns && !state.wantsToBuy && !state.wantsToRead
     }
 }
+
+// MARK: Entity Converter
+extension BookRowReducer.State {
+    public static func from(_ entity: BookEntity) -> Self {
+        .init(
+            id: entity.id!,
+            title: entity.title ?? "",
+            author: entity.author ?? "",
+            owns: entity.owns,
+            wantsToBuy: entity.wantsToBuy,
+            wantsToRead: entity.wantsToRead,
+            isRead: entity.isRead
+        )
+    }
+}
+
+// MARK: State Mock
+extension BookRowReducer.State {
+    public static func mock(
+        id: UUID = UUID(),
+        title: String = "Stranger",
+        author: String = "Albert Camus",
+        owns: Bool = true,
+        wantsToBuy: Bool = false,
+        wantsToRead: Bool = false,
+        isRead: Bool = true
+    ) -> Self {
+        .init(
+            id: id,
+            title: title,
+            author: author,
+            owns: owns,
+            wantsToBuy: wantsToBuy,
+            wantsToRead: wantsToRead,
+            isRead: isRead
+        )
+    }
+    
+    public static func new(
+        id: UUID = UUID(),
+        title: String = "",
+        author: String = "",
+        owns: Bool = false,
+        wantsToBuy: Bool = false,
+        wantsToRead: Bool = false,
+        isRead: Bool = false
+    ) -> Self {
+        .init(
+            id: id,
+            title: title,
+            author: author,
+            owns: owns,
+            wantsToBuy: wantsToBuy,
+            wantsToRead: wantsToRead,
+            isRead: isRead
+        )
+    }
+}

@@ -90,3 +90,42 @@ public struct LibraryReducer: ReducerProtocol {
         }
     }
 }
+
+// MARK: State Mock
+extension LibraryReducer.State {
+    public static func mock(
+        currentSegment: BookSegment = .library,
+        books: IdentifiedArrayOf<BookRowReducer.State> = [
+            .mock(
+                wantsToRead: true,
+                isRead: false
+            ),
+            .mock(
+                title: "The Fall",
+                author: "Albert Camus",
+                owns: true
+            ),
+            .mock(
+                title: "Plague",
+                author: "Albert Camus",
+                owns: false,
+                wantsToBuy: true
+            ),
+            .mock(
+                title: "Karavani",
+                author: "Jemal Karchkhadze",
+                owns: true,
+                wantsToBuy: true,
+                wantsToRead: true,
+                isRead: true
+            )
+        ],
+        newBook: BookDetailsReducer.State = .new()
+    ) -> Self {
+        .init(
+            currentSegment: currentSegment,
+            books: books,
+            newBook: newBook
+        )
+    }
+}

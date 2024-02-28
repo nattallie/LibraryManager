@@ -73,3 +73,18 @@ public struct BookDetailsReducer: ReducerProtocol {
         }
     }
 }
+
+// MARK: - State Mock
+extension BookDetailsReducer.State {
+    public static func mock(
+        book: BookRowReducer.State = .mock()
+    ) -> Self {
+        .init(book: book, mode: .edit)
+    }
+    
+    public static func new(
+        book: BookRowReducer.State = .new()
+    ) -> Self {
+        .init(book: book, mode: .create)
+    }
+}
