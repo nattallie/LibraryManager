@@ -12,10 +12,10 @@ import SwiftUI
 struct LibraryManagerApp: App {
     var body: some Scene {
         WindowGroup {
-            AppView(
+            LibraryView(
                 store: Store(
-                    initialState: Library.State.mock(),
-                    reducer: Library()
+                    initialState: LibraryReducer.State.mock(),
+                    reducer: LibraryReducer()
                 )
             )
         }

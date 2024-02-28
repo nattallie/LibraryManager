@@ -9,7 +9,7 @@ import ComposableArchitecture
 import Foundation
 
 // MARK: - Library.State
-extension Library.State {
+extension LibraryReducer.State {
     public static func mock(
         currentSegment: BookSegment = .library,
         books: IdentifiedArrayOf<Book.State> = [

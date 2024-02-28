@@ -10,6 +10,7 @@
 		0B21155629EAA2DC00BB06CF /* BookSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B21155529EAA2DC00BB06CF /* BookSegment.swift */; };
 		0B21155829EAAA9500BB06CF /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B21155729EAAA9500BB06CF /* Book.swift */; };
 		0B21155A29EAD83400BB06CF /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B21155929EAD83400BB06CF /* Mocks.swift */; };
+		0B2CF2FA2B8FE974003CD457 /* LibraryReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2CF2F92B8FE974003CD457 /* LibraryReducer.swift */; };
 		0B3D53442A066B220033B692 /* BooksProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3D53432A066B220033B692 /* BooksProvider.swift */; };
 		0B3D53462A066D240033B692 /* BookEntityConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3D53452A066D240033B692 /* BookEntityConverter.swift */; };
 		0B3D534A2A0674FB0033B692 /* BooksTestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3D53492A0674FB0033B692 /* BooksTestProvider.swift */; };
@@ -23,7 +24,7 @@
 		0B99FE412A0523080022E16C /* BooksCoreDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B99FE402A0523080022E16C /* BooksCoreDataProvider.swift */; };
 		0B9D3ED029F665D00046107E /* CheckBoxToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9D3ECF29F665D00046107E /* CheckBoxToggleStyle.swift */; };
 		0BE2ADB629E9AA3500DD2A73 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 0BE2ADB529E9AA3500DD2A73 /* ComposableArchitecture */; };
-		0BE2ADB829E9AFFA00DD2A73 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE2ADB729E9AFFA00DD2A73 /* AppView.swift */; };
+		0BE2ADB829E9AFFA00DD2A73 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE2ADB729E9AFFA00DD2A73 /* LibraryView.swift */; };
 		0BF248DF29F044ED00DC92D6 /* BookDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF248DE29F044ED00DC92D6 /* BookDetailsView.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		0B21155529EAA2DC00BB06CF /* BookSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSegment.swift; sourceTree = "<group>"; };
 		0B21155729EAAA9500BB06CF /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		0B21155929EAD83400BB06CF /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
+		0B2CF2F92B8FE974003CD457 /* LibraryReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryReducer.swift; sourceTree = "<group>"; };
 		0B3D53432A066B220033B692 /* BooksProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksProvider.swift; sourceTree = "<group>"; };
 		0B3D53452A066D240033B692 /* BookEntityConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookEntityConverter.swift; sourceTree = "<group>"; };
 		0B3D53492A0674FB0033B692 /* BooksTestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksTestProvider.swift; sourceTree = "<group>"; };
@@ -55,7 +57,7 @@
 		0B99FE3E2A0522020022E16C /* BooksClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksClient.swift; sourceTree = "<group>"; };
 		0B99FE402A0523080022E16C /* BooksCoreDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksCoreDataProvider.swift; sourceTree = "<group>"; };
 		0B9D3ECF29F665D00046107E /* CheckBoxToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxToggleStyle.swift; sourceTree = "<group>"; };
-		0BE2ADB729E9AFFA00DD2A73 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		0BE2ADB729E9AFFA00DD2A73 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		0BF248DE29F044ED00DC92D6 /* BookDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,6 +122,23 @@
 			path = LibraryManager;
 			sourceTree = "<group>";
 		};
+		0B90442C2B8FE8BA000BAEBB /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				0B2CF2F92B8FE974003CD457 /* LibraryReducer.swift */,
+				0BE2ADB729E9AFFA00DD2A73 /* LibraryView.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		0B90442D2B8FE8C1000BAEBB /* BookDetails */ = {
+			isa = PBXGroup;
+			children = (
+				0BF248DE29F044ED00DC92D6 /* BookDetailsView.swift */,
+			);
+			path = BookDetails;
+			sourceTree = "<group>";
+		};
 		0B99FE372A05200E0022E16C /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,8 +161,8 @@
 		0BF248DB29F0421800DC92D6 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				0BE2ADB729E9AFFA00DD2A73 /* AppView.swift */,
-				0BF248DE29F044ED00DC92D6 /* BookDetailsView.swift */,
+				0B90442C2B8FE8BA000BAEBB /* Library */,
+				0B90442D2B8FE8C1000BAEBB /* BookDetails */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -285,9 +304,10 @@
 				0B21155829EAAA9500BB06CF /* Book.swift in Sources */,
 				0B3D53442A066B220033B692 /* BooksProvider.swift in Sources */,
 				0B99FE3D2A05206B0022E16C /* Library.xcdatamodeld in Sources */,
-				0BE2ADB829E9AFFA00DD2A73 /* AppView.swift in Sources */,
+				0BE2ADB829E9AFFA00DD2A73 /* LibraryView.swift in Sources */,
 				0B3D53462A066D240033B692 /* BookEntityConverter.swift in Sources */,
 				0B99FE3F2A0522020022E16C /* BooksClient.swift in Sources */,
+				0B2CF2FA2B8FE974003CD457 /* LibraryReducer.swift in Sources */,
 				0B769E2429A779BE00B261CC /* LibraryManagerApp.swift in Sources */,
 				0B21155629EAA2DC00BB06CF /* BookSegment.swift in Sources */,
 				0B9D3ED029F665D00046107E /* CheckBoxToggleStyle.swift in Sources */,
