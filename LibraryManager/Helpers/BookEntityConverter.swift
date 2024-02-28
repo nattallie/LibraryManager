@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK:- Book.State from BookEntity
+// MARK: - Book.State from BookEntity
 extension Book.State {
     public static func from(_ entity: BookEntity) -> Self {
         .init(

@@ -10,6 +10,10 @@ import Foundation
 
 // MARK: - Library Reducer
 public struct LibraryReducer: ReducerProtocol {
+    // MARK: Dependencies
+    @Dependency(\.uuid) var uuid
+    @Dependency(\.booksClient) var booksClient
+
     // MARK: State
     public struct State: Equatable {
         public var currentSegment: BookSegment
@@ -24,7 +28,7 @@ public struct LibraryReducer: ReducerProtocol {
                 return .init(uniqueElements: books.filter { $0.wantsToRead }.sorted(by: { $0.author < $1.author} ))
             }
         }
-        public var newBook: BookDetails.State
+        public var newBook: BookDetailsReducer.State
     }
     
     // MARK: Action
@@ -33,14 +37,10 @@ public struct LibraryReducer: ReducerProtocol {
         case didChangeSegment(BookSegment)
         case book(id: Book.State.ID, action: Book.Action)
         case didTapAddBook
-        case newBookCreated(BookDetails.Action)
+        case newBookCreated(BookDetailsReducer.Action)
         case newBookNavigationActivityChanged
         case filteredBooksDeletedAt(indexSet: IndexSet)
     }
-    
-    // MARK: Dependencies
-    @Dependency(\.uuid) var uuid
-    @Dependency(\.booksClient) var booksClient
     
     // MARK: init
     public init() {}
@@ -52,7 +52,7 @@ public struct LibraryReducer: ReducerProtocol {
           Book()
         }
         Scope(state: \.newBook, action: /Action.newBookCreated) {
-            BookDetails()
+            BookDetailsReducer()
         }
     }
     

@@ -8,75 +8,9 @@
 import ComposableArchitecture
 import SwiftUI
 
-// MARK: - Reducer
-public struct BookDetails: ReducerProtocol {
-    // MARK: State
-    public struct State: Equatable {
-        public var book: Book.State
-        public var mode: BookDetailsMode
-    }
-    
-    // MARK: Action
-    public enum Action: Equatable {
-        case didTapBackButton
-        case didTapDoneButton
-        case didChangeTitle(_ title: String)
-        case didChangeAuthor(_ author: String)
-        case didChangeOwnership(_ owns: Bool)
-        case didChangeWishlist(_ wantsToBuy: Bool)
-        case didChangeQueue(_ wantsToRead: Bool)
-        case didChangeIsRead(_ isRead: Bool)
-    }
-    
-    // MARK: Dependencies
-    @Dependency(\.booksClient) var booksClient
-    
-    // MARK: init
-    public init() {}
-    
-    // MARK: body
-    public var body: some ReducerProtocol<State, Action> {
-        Reduce { state, action in
-            switch action {
-            case .didTapBackButton:
-                if state.mode == .edit {
-                    booksClient.provider.updateBook(state.book)
-                }
-                return .none
-            case .didTapDoneButton:
-                return .none
-            case let .didChangeTitle(title):
-                state.book.title = title
-                return .none
-            case let .didChangeAuthor(author):
-                state.book.author = author
-                return .none
-            case let .didChangeOwnership(owns):
-                state.book.owns = owns
-                return .none
-            case let .didChangeWishlist(wantsToBuy):
-                state.book.wantsToBuy = wantsToBuy
-                return .none
-            case let .didChangeQueue(wantsToRead):
-                state.book.wantsToRead = wantsToRead
-                return .none
-            case let .didChangeIsRead(isRead):
-                state.book.isRead = isRead
-                return .none
-            }
-        }
-    }
-    
-    // MARK: Book Details Mode
-    public enum BookDetailsMode {
-        case create
-        case edit
-    }
-}
-
 // MARK: - Book Details View
 struct BookDetailsView: View {
-    @ObservedObject var viewStore: ViewStoreOf<BookDetails>
+    @ObservedObject var viewStore: ViewStoreOf<BookDetailsReducer>
     var fromSegment: BookSegment
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
@@ -120,7 +54,7 @@ struct BookDetailsView: View {
     }
     
     // MARK: init
-    init(viewStore: ViewStoreOf<BookDetails>, fromSegment: BookSegment) {
+    init(viewStore: ViewStoreOf<BookDetailsReducer>, fromSegment: BookSegment) {
         self.viewStore = viewStore
         self.fromSegment = fromSegment
     }
@@ -188,7 +122,7 @@ struct BookDetailsView: View {
                     }
                     QuestionWithToggleRow(
                         question: "Have you read \(bookName) ?  ✔️",
-                        isOn: viewStore.binding(get: \.book.isRead, send: BookDetails.Action.didChangeIsRead)
+                        isOn: viewStore.binding(get: \.book.isRead, send: BookDetailsReducer.Action.didChangeIsRead)
                     )
                         .padding(.leading)
                     Spacer()
@@ -251,8 +185,8 @@ struct BookDetailsView_Preview: PreviewProvider {
         BookDetailsView(
             viewStore: ViewStore(
                 .init(
-                    initialState: BookDetails.State.mock(),
-                    reducer: BookDetails()
+                    initialState: BookDetailsReducer.State.mock(),
+                    reducer: BookDetailsReducer()
                 )
             ),
             fromSegment: .library

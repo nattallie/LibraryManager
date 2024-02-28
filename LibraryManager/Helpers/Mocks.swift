@@ -37,7 +37,7 @@ extension LibraryReducer.State {
                 isRead: true
             )
         ],
-        newBook: BookDetails.State = .new()
+        newBook: BookDetailsReducer.State = .new()
     ) -> Self {
         .init(
             currentSegment: currentSegment,
@@ -91,7 +91,7 @@ extension Book.State {
 }
 
 // MARK: - BookDetails.State
-extension BookDetails.State {
+extension BookDetailsReducer.State {
     public static func mock(
         book: Book.State = .mock()
     ) -> Self {

@@ -20,7 +20,7 @@ public struct Book: ReducerProtocol {
         public var wantsToRead: Bool
         public var isRead: Bool
         
-        var bookDetails: BookDetails.State {
+        var bookDetails: BookDetailsReducer.State {
             get {
                 .init(
                     book: .init(
@@ -49,7 +49,7 @@ public struct Book: ReducerProtocol {
     
     // MARK: Action
     public enum Action: Equatable {
-        case bookDetails(BookDetails.Action)
+        case bookDetails(BookDetailsReducer.Action)
         case didTapQueueSwipe
         case didTapAddToLibrarySwipe
         case didTapHaveReadSwipe
@@ -68,7 +68,7 @@ public struct Book: ReducerProtocol {
     public var body: some ReducerProtocol<State, Action> {
         Reduce(core)
         Scope(state: \.bookDetails, action: /Action.bookDetails) {
-            BookDetails()
+            BookDetailsReducer()
         }
     }
     
