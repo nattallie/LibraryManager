@@ -157,28 +157,6 @@ struct BookDetailsView: View {
     }
 }
 
-// MARK: - Question With Toggle Row
-struct QuestionWithToggleRow: View {
-    private let question: String
-    @Binding private var isOn: Bool
-    
-    init(question: String, isOn: Binding<Bool>) {
-        self.question = question
-        self._isOn = isOn
-    }
-    
-    var body: some View {
-        HStack(spacing: 8) {
-            Toggle(question, isOn: $isOn)
-                .toggleStyle(.checkmark)
-        }
-        .frame(alignment: .trailing)
-        .onTapGesture {
-            isOn.toggle()
-        }
-    }
-}
-
 // MARK: - Preview
 struct BookDetailsView_Preview: PreviewProvider {
     static var previews: some View {

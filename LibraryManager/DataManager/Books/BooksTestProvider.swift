@@ -29,18 +29,18 @@ public class BooksTestProvider: BooksProvider {
         }
     }
 
-    public func fetchAllBooks() -> [Book.State] {
+    public func fetchAllBooks() -> [BookRowReducer.State] {
         let request: NSFetchRequest<BookEntity> = .init(entityName: BooksTestProvider.entityName)
         do {
             let books = try container.viewContext.fetch(request)
-            return books.compactMap { Book.State.from($0) }
+            return books.compactMap { BookRowReducer.State.from($0) }
         } catch {
             print("Error occured while fetching books", error)
             return []
         }
     }
 
-    public func addNewBook(_ newBook: Book.State) {
+    public func addNewBook(_ newBook: BookRowReducer.State) {
         let bookEntity: BookEntity = .init(context: container.viewContext)
         bookEntity.from(newBook)
         container.viewContext.insert(bookEntity)
@@ -52,7 +52,7 @@ public class BooksTestProvider: BooksProvider {
         }
     }
 
-    public func updateBook(_ book: Book.State) {
+    public func updateBook(_ book: BookRowReducer.State) {
         do {
             guard let oldBook = try fetchBookEntityWith(id: book.id) else { return }
             oldBook.from(book)
@@ -62,7 +62,7 @@ public class BooksTestProvider: BooksProvider {
         }
     }
 
-    public func removeBook(_ book: Book.State) {
+    public func removeBook(_ book: BookRowReducer.State) {
         do {
             guard let oldBook = try fetchBookEntityWith(id: book.id) else { return }
             container.viewContext.delete(oldBook)

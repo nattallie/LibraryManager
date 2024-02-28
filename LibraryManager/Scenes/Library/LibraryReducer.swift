@@ -17,8 +17,8 @@ public struct LibraryReducer: ReducerProtocol {
     // MARK: State
     public struct State: Equatable {
         public var currentSegment: BookSegment
-        public var books: IdentifiedArrayOf<Book.State>
-        public var filteredBooks: IdentifiedArrayOf<Book.State> {
+        public var books: IdentifiedArrayOf<BookRowReducer.State>
+        public var filteredBooks: IdentifiedArrayOf<BookRowReducer.State> {
             switch currentSegment {
             case .library:
                 return .init(uniqueElements: books.filter { $0.owns }.sorted(by: { $0.author < $1.author} ))
@@ -35,7 +35,7 @@ public struct LibraryReducer: ReducerProtocol {
     public enum Action {
         case onAppear
         case didChangeSegment(BookSegment)
-        case book(id: Book.State.ID, action: Book.Action)
+        case book(id: BookRowReducer.State.ID, action: BookRowReducer.Action)
         case didTapAddBook
         case newBookCreated(BookDetailsReducer.Action)
         case newBookNavigationActivityChanged
@@ -49,7 +49,7 @@ public struct LibraryReducer: ReducerProtocol {
     public var body: some ReducerProtocol<State, Action> {
         Reduce(core)
         .forEach(\.books, action: /Action.book(id:action:)) {
-          Book()
+            BookRowReducer()
         }
         Scope(state: \.newBook, action: /Action.newBookCreated) {
             BookDetailsReducer()

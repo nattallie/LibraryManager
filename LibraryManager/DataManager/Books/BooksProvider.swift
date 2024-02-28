@@ -9,8 +9,8 @@ import Foundation
 
 // MARK: Books Provider Protocol
 public protocol BooksProvider {
-    func fetchAllBooks() -> [Book.State]
-    func addNewBook(_ newBook: Book.State)
-    func updateBook(_ book: Book.State)
-    func removeBook(_ book: Book.State)
+    func fetchAllBooks() -> [BookRowReducer.State]
+    func addNewBook(_ newBook: BookRowReducer.State)
+    func updateBook(_ book: BookRowReducer.State)
+    func removeBook(_ book: BookRowReducer.State)
 }

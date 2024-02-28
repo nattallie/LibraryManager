@@ -21,7 +21,7 @@ public struct BookDetailsReducer: ReducerProtocol {
 
     // MARK: State
     public struct State: Equatable {
-        public var book: Book.State
+        public var book: BookRowReducer.State
         public var mode: BookDetailsMode
     }
     

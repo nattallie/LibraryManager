@@ -12,7 +12,7 @@ import Foundation
 extension LibraryReducer.State {
     public static func mock(
         currentSegment: BookSegment = .library,
-        books: IdentifiedArrayOf<Book.State> = [
+        books: IdentifiedArrayOf<BookRowReducer.State> = [
             .mock(
                 wantsToRead: true,
                 isRead: false
@@ -48,7 +48,7 @@ extension LibraryReducer.State {
 }
 
 // MARK: - Book.State
-extension Book.State {
+extension BookRowReducer.State {
     public static func mock(
         id: UUID = UUID(),
         title: String = "Stranger",
@@ -93,13 +93,13 @@ extension Book.State {
 // MARK: - BookDetails.State
 extension BookDetailsReducer.State {
     public static func mock(
-        book: Book.State = .mock()
+        book: BookRowReducer.State = .mock()
     ) -> Self {
         .init(book: book, mode: .edit)
     }
     
     public static func new(
-        book: Book.State = .new()
+        book: BookRowReducer.State = .new()
     ) -> Self {
         .init(book: book, mode: .create)
     }

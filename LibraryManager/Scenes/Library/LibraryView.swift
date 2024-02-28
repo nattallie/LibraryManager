@@ -47,7 +47,7 @@ public struct LibraryView: View {
                     .padding(.horizontal)
                 List {
                     ForEachStore(store.scope(state: \.filteredBooks, action: LibraryReducer.Action.book(id:action:))) {
-                        BookRow(store: $0, fromSegment: viewStore.currentSegment)
+                        BookRowView(store: $0, fromSegment: viewStore.currentSegment)
                     }
                     .onDelete(perform: { viewStore.send(.filteredBooksDeletedAt(indexSet: $0)) })
                 }

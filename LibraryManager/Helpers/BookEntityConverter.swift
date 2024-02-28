@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Book.State from BookEntity
-extension Book.State {
+extension BookRowReducer.State {
     public static func from(_ entity: BookEntity) -> Self {
         .init(
             id: entity.id!,
@@ -24,7 +24,7 @@ extension Book.State {
 
 // MARK: - BookEntity from Book.State
 extension BookEntity {
-    public func from(_ book: Book.State) {
+    public func from(_ book: BookRowReducer.State) {
         self.id = book.id
         self.title = book.title
         self.author = book.author
