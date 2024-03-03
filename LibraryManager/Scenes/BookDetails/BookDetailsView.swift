@@ -64,8 +64,8 @@ struct BookDetailsView: View {
         NavigationView {
             VStack(alignment: .leading) {
                 Text(screenTitle)
-                    .font(.system(size: 24))
-                    .fontWeight(.semibold)
+                    .font(.system(size: 24, weight: .semibold))
+                    .foregroundStyle(ColorBook.primary9)
                     .padding(.bottom, 15)
                 VStack(alignment: .leading, spacing: 20) {
                     TextField(
@@ -75,10 +75,18 @@ struct BookDetailsView: View {
                             set: { viewStore.send(.didChangeTitle($0)) }
                         )
                     )
-                        .textFieldStyle(.roundedBorder)
-                        .border(Color.black)
+                        .textFieldStyle(.plain)
+                        .background(.clear)
+                        .padding(6)
+                        .foregroundColor(ColorBook.primary9)
+                        .fontWeight(.medium)
                         .cornerRadius(3)
                         .autocorrectionDisabled(true)
+                    Rectangle()
+                        .frame(height: 1)
+                        .foregroundColor(ColorBook.primary9)
+                        .padding(.vertical, -20)
+                        .padding(.trailing, 16)
                     TextField(
                         "Author",
                         text: Binding(
@@ -86,10 +94,18 @@ struct BookDetailsView: View {
                             set: { viewStore.send(.didChangeAuthor($0)) }
                         )
                     )
-                        .textFieldStyle(.roundedBorder)
-                        .border(Color.black)
+                        .textFieldStyle(.plain)
+                        .background(.clear)
+                        .padding(6)
+                        .foregroundColor(ColorBook.primary9)
+                        .fontWeight(.medium)
                         .cornerRadius(3)
                         .autocorrectionDisabled(true)
+                    Rectangle()
+                        .frame(height: 1)
+                        .foregroundColor(ColorBook.primary9)
+                        .padding(.vertical, -20)
+                        .padding(.trailing, 16)
                     if !(viewStore.mode == .edit && fromSegment == .library) {
                         QuestionWithToggleRow(
                             question: "Do you have \(bookName) ?  📚",
@@ -98,7 +114,6 @@ struct BookDetailsView: View {
                                 set: { viewStore.send(.didChangeOwnership($0)) }
                             )
                         )
-                        .padding(.leading)
                     }
                     if !(viewStore.mode == .edit && fromSegment == .wishlist) {
                         QuestionWithToggleRow(
@@ -108,7 +123,6 @@ struct BookDetailsView: View {
                                 set: { viewStore.send(.didChangeWishlist($0)) }
                             )
                         )
-                        .padding(.leading)
                     }
                     if !(viewStore.mode == .edit && fromSegment == .queue) {
                         QuestionWithToggleRow(
@@ -118,17 +132,17 @@ struct BookDetailsView: View {
                                 set: { viewStore.send(.didChangeQueue($0)) }
                             )
                         )
-                        .padding(.leading)
                     }
                     QuestionWithToggleRow(
                         question: "Have you read \(bookName) ?  ✔️",
                         isOn: viewStore.binding(get: \.book.isRead, send: BookDetailsReducer.Action.didChangeIsRead)
                     )
-                        .padding(.leading)
                     Spacer()
                 }
+                .padding(.horizontal, 10)
             }
                 .padding()
+                .mainBackground()
         }
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(
@@ -140,6 +154,7 @@ struct BookDetailsView: View {
                         }
                     ) {
                         Image(systemName: "chevron.left")
+                            .foregroundColor(ColorBook.primary9)
                     }
                     .disabled(backButtonIsDisabled),
                 trailing: Button(
@@ -149,7 +164,9 @@ struct BookDetailsView: View {
                     }
                 ) {
                     if !doneButtonIsHidden {
-                        Text("Done")                        
+                        Text("Done")     
+                            .foregroundColor(doneButtonIsDisabled ? ColorBook.primary4 : ColorBook.primary9)
+                            .fontWeight(.semibold)
                     }
                 }
                     .disabled(doneButtonIsDisabled)

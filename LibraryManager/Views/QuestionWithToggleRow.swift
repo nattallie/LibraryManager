@@ -21,6 +21,8 @@ struct QuestionWithToggleRow: View {
         HStack(spacing: 8) {
             Toggle(question, isOn: $isOn)
                 .toggleStyle(.checkmark)
+                .foregroundColor(ColorBook.primary9)
+                .fontWeight(.regular)
         }
         .frame(alignment: .trailing)
         .onTapGesture {

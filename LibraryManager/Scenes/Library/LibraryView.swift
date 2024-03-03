@@ -95,7 +95,7 @@ public struct LibraryView: View {
             })
         }
         .onAppear {
-//            viewStore.send(.onAppear)
+            viewStore.send(.onAppear)
         }
     }
 }
