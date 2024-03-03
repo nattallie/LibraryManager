@@ -27,9 +27,11 @@ struct BookRowView: View {
                 HStack(spacing: 4) {
                     VStack(alignment: .leading) {
                         Text(viewStore.title)
-                            .font(.headline)
+                            .foregroundStyle(ColorBook.primary9)
+                            .font(.system(size: 16, weight: .bold))
                         Text(viewStore.author)
-                            .font(.subheadline)
+                            .foregroundStyle(ColorBook.primary9)
+                            .font(.system(size: 16, weight: .regular))
                     }
                     Spacer()
                     if viewStore.isRead {
@@ -37,7 +39,7 @@ struct BookRowView: View {
                             Image(systemName: "checkmark")
                                 .resizable()
                                 .renderingMode(.template)
-                                .foregroundColor(.green.opacity(0.8))
+                                .foregroundColor(ColorBook.primary9)
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 18, height: 18)
                         }

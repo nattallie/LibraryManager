@@ -54,7 +54,7 @@ public struct LibraryView: View {
                 }
                     .listStyle(.insetGrouped)
                     .scrollContentBackground(.hidden)
-                    .shadow(color: Color.gray.opacity(0.5), radius: 5)
+                    .shadow(color: ColorBook.primary7, radius: 5)
                 NavigationLink("") {
                     BookDetailsView(
                         viewStore: ViewStore(
@@ -67,14 +67,7 @@ public struct LibraryView: View {
                     )
                 }
             }
-            .background(
-                LinearGradient(
-                    gradient: Gradient(colors: [ColorBook.primary2, ColorBook.primary6]),
-                    startPoint: .top,
-                    endPoint: .bottom
-                ),
-                ignoresSafeAreaEdges: [.top, .bottom]
-            )
+            .mainBackground()
             .toolbar(content: {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(
@@ -102,7 +95,7 @@ public struct LibraryView: View {
             })
         }
         .onAppear {
-            viewStore.send(.onAppear)
+//            viewStore.send(.onAppear)
         }
     }
 }
