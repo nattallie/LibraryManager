@@ -43,6 +43,7 @@ public struct LibraryView: View {
                     }
                 }
                     .pickerStyle(.segmented)
+                    .segmentedPicker()
                     .padding(.top, 10)
                     .padding(.horizontal)
                 List {
@@ -53,7 +54,6 @@ public struct LibraryView: View {
                 }
                     .listStyle(.insetGrouped)
                     .scrollContentBackground(.hidden)
-                    .background(Color.white.opacity(0.5))
                     .shadow(color: Color.gray.opacity(0.5), radius: 5)
                 NavigationLink("") {
                     BookDetailsView(
@@ -67,28 +67,43 @@ public struct LibraryView: View {
                     )
                 }
             }
+            .background(
+                LinearGradient(
+                    gradient: Gradient(colors: [ColorBook.primary2, ColorBook.primary6]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                ),
+                ignoresSafeAreaEdges: [.top, .bottom]
+            )
             .toolbar(content: {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink("Add  📗") {
-                        BookDetailsView(
-                            viewStore: ViewStore(
-                                store.scope(
-                                    state: \.newBook,
-                                    action: LibraryReducer.Action.newBookCreated
-                                )
-                            ),
-                            fromSegment: .library
-                        )
-                    }
+                    NavigationLink(
+                        destination: {
+                            BookDetailsView(
+                                viewStore: ViewStore(
+                                    store.scope(
+                                        state: \.newBook,
+                                        action: LibraryReducer.Action.newBookCreated
+                                    )
+                                ),
+                                fromSegment: .library
+                            )
+                        }, 
+                        label: {
+                            Text("Add  📗")
+                                .foregroundStyle(ColorBook.primary9)
+                                .font(.system(size: 16, weight: .semibold))
+                        }
+                    )
                     .onTapGesture {
                         viewStore.send(.didTapAddBook)
                     }
                 }
             })
         }
-            .onAppear {
-                viewStore.send(.onAppear)
-            }
+        .onAppear {
+            viewStore.send(.onAppear)
+        }
     }
 }
 
