@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0B13498E2B945E7600ADE044 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B13498D2B945E7600ADE044 /* Color+Hex.swift */; };
+		0B1349912B9460A200ADE044 /* ColorBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1349902B9460A200ADE044 /* ColorBook.swift */; };
 		0B21155629EAA2DC00BB06CF /* BookSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B21155529EAA2DC00BB06CF /* BookSegment.swift */; };
 		0B2CF2FA2B8FE974003CD457 /* LibraryReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2CF2F92B8FE974003CD457 /* LibraryReducer.swift */; };
 		0B2CF2FC2B8FEA28003CD457 /* BookDetailsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2CF2FB2B8FEA28003CD457 /* BookDetailsReducer.swift */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		0B13498D2B945E7600ADE044 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
+		0B1349902B9460A200ADE044 /* ColorBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorBook.swift; sourceTree = "<group>"; };
 		0B21155529EAA2DC00BB06CF /* BookSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSegment.swift; sourceTree = "<group>"; };
 		0B2CF2F92B8FE974003CD457 /* LibraryReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryReducer.swift; sourceTree = "<group>"; };
 		0B2CF2FB2B8FEA28003CD457 /* BookDetailsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsReducer.swift; sourceTree = "<group>"; };
@@ -92,6 +94,14 @@
 				0B13498D2B945E7600ADE044 /* Color+Hex.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0B13498F2B94609300ADE044 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0B1349902B9460A200ADE044 /* ColorBook.swift */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		0B2CF2FD2B8FEBF0003CD457 /* Books */ = {
@@ -178,6 +188,7 @@
 				0B2CF30A2B8FF018003CD457 /* UIStyles */,
 				0B13498A2B945DF700ADE044 /* Extensions */,
 				0B2CF2FE2B8FEC50003CD457 /* SharedModels */,
+				0B13498F2B94609300ADE044 /* Resources */,
 				0B769E2729A779BE00B261CC /* Assets.xcassets */,
 			);
 			path = LibraryManager;
@@ -352,6 +363,7 @@
 			files = (
 				0B13498E2B945E7600ADE044 /* Color+Hex.swift in Sources */,
 				0B3D53442A066B220033B692 /* BooksProvider.swift in Sources */,
+				0B1349912B9460A200ADE044 /* ColorBook.swift in Sources */,
 				0B99FE3D2A05206B0022E16C /* Library.xcdatamodeld in Sources */,
 				0BE2ADB829E9AFFA00DD2A73 /* LibraryView.swift in Sources */,
 				0B2CF3022B8FECCF003CD457 /* QuestionWithToggleRow.swift in Sources */,
