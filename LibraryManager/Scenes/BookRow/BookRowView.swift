@@ -19,7 +19,7 @@ struct BookRowView: View {
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             ZStack {
-                Color.white
+                Color.clear
                     .frame(maxWidth: .infinity)
                     .onTapGesture {
                         isShowingDetailsView.toggle()
@@ -71,11 +71,12 @@ struct BookRowView: View {
                     queueSwipeActions(viewStore: viewStore)
                 }
             }
+            .contentShape(Rectangle())
             .onTapGesture {
                 isShowingDetailsView.toggle()
             }
-            .background(.clear)
             .listRowSeparator(.hidden)
+            .listRowBackground(ColorBook.primary3)
         }
     }
     

@@ -63,10 +63,6 @@ struct BookDetailsView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                Text(screenTitle)
-                    .font(.system(size: 24, weight: .semibold))
-                    .foregroundStyle(ColorBook.primary9)
-                    .padding(.bottom, 15)
                 VStack(alignment: .leading, spacing: 20) {
                     TextField(
                         "Book Title",
@@ -86,7 +82,6 @@ struct BookDetailsView: View {
                         .frame(height: 1)
                         .foregroundColor(ColorBook.primary9)
                         .padding(.vertical, -20)
-                        .padding(.trailing, 16)
                     TextField(
                         "Author",
                         text: Binding(
@@ -105,7 +100,6 @@ struct BookDetailsView: View {
                         .frame(height: 1)
                         .foregroundColor(ColorBook.primary9)
                         .padding(.vertical, -20)
-                        .padding(.trailing, 16)
                     if !(viewStore.mode == .edit && fromSegment == .library) {
                         QuestionWithToggleRow(
                             question: "Do you have \(bookName) ?  📚",
@@ -145,6 +139,7 @@ struct BookDetailsView: View {
                 .mainBackground()
         }
             .navigationBarBackButtonHidden(true)
+            .navigationBarTitle(screenTitle)
             .navigationBarItems(
                 leading:
                     Button(

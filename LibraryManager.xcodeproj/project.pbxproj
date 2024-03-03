@@ -11,6 +11,7 @@
 		0B1349912B9460A200ADE044 /* ColorBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1349902B9460A200ADE044 /* ColorBook.swift */; };
 		0B1349932B946F3700ADE044 /* SegmentedPickerViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1349922B946F3700ADE044 /* SegmentedPickerViewModifier.swift */; };
 		0B1349972B94775D00ADE044 /* MainBackgroundViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1349962B94775D00ADE044 /* MainBackgroundViewModifier.swift */; };
+		0B13499B2B9526AF00ADE044 /* NavigationBarTitleColorModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B13499A2B9526AF00ADE044 /* NavigationBarTitleColorModifier.swift */; };
 		0B21155629EAA2DC00BB06CF /* BookSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B21155529EAA2DC00BB06CF /* BookSegment.swift */; };
 		0B2CF2FA2B8FE974003CD457 /* LibraryReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2CF2F92B8FE974003CD457 /* LibraryReducer.swift */; };
 		0B2CF2FC2B8FEA28003CD457 /* BookDetailsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2CF2FB2B8FEA28003CD457 /* BookDetailsReducer.swift */; };
@@ -49,6 +50,7 @@
 		0B1349902B9460A200ADE044 /* ColorBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorBook.swift; sourceTree = "<group>"; };
 		0B1349922B946F3700ADE044 /* SegmentedPickerViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedPickerViewModifier.swift; sourceTree = "<group>"; };
 		0B1349962B94775D00ADE044 /* MainBackgroundViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBackgroundViewModifier.swift; sourceTree = "<group>"; };
+		0B13499A2B9526AF00ADE044 /* NavigationBarTitleColorModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarTitleColorModifier.swift; sourceTree = "<group>"; };
 		0B21155529EAA2DC00BB06CF /* BookSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSegment.swift; sourceTree = "<group>"; };
 		0B2CF2F92B8FE974003CD457 /* LibraryReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryReducer.swift; sourceTree = "<group>"; };
 		0B2CF2FB2B8FEA28003CD457 /* BookDetailsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsReducer.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				0B9D3ECF29F665D00046107E /* CheckBoxToggleStyle.swift */,
 				0B1349922B946F3700ADE044 /* SegmentedPickerViewModifier.swift */,
 				0B1349962B94775D00ADE044 /* MainBackgroundViewModifier.swift */,
+				0B13499A2B9526AF00ADE044 /* NavigationBarTitleColorModifier.swift */,
 			);
 			path = UIStyles;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 				0B1349932B946F3700ADE044 /* SegmentedPickerViewModifier.swift in Sources */,
 				0B1349972B94775D00ADE044 /* MainBackgroundViewModifier.swift in Sources */,
 				0B3D534A2A0674FB0033B692 /* BooksTestProvider.swift in Sources */,
+				0B13499B2B9526AF00ADE044 /* NavigationBarTitleColorModifier.swift in Sources */,
 				0B99FE412A0523080022E16C /* BooksCoreDataProvider.swift in Sources */,
 				0B2CF2FC2B8FEA28003CD457 /* BookDetailsReducer.swift in Sources */,
 			);

@@ -13,7 +13,7 @@ struct MainBackgroundViewModifier: ViewModifier {
         content
             .background(
                 LinearGradient(
-                    gradient: Gradient(colors: [ColorBook.primary2, ColorBook.primary6]),
+                    gradient: Gradient(colors: [ColorBook.primary2, ColorBook.primary3]),
                     startPoint: .top,
                     endPoint: .bottom
                 ), 

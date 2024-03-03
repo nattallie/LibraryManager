@@ -31,7 +31,7 @@ public struct LibraryView: View {
     // MARK: App View Body
     public var body: some View {
         NavigationStack {
-            VStack(alignment: .leading) { 
+            VStack(alignment: .leading) {
                 Picker(
                     "Library",
                     selection:
@@ -54,6 +54,8 @@ public struct LibraryView: View {
                 }
                     .listStyle(.insetGrouped)
                     .scrollContentBackground(.hidden)
+                    .scrollIndicators(.hidden)
+                    .listRowSpacing(10)
                     .shadow(color: ColorBook.primary7, radius: 5)
                 NavigationLink("") {
                     BookDetailsView(
@@ -94,6 +96,7 @@ public struct LibraryView: View {
                 }
             })
         }
+        .navigationBarTitleColor(ColorBook.primary9)
         .onAppear {
             viewStore.send(.onAppear)
         }
