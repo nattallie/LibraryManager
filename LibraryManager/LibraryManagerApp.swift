@@ -14,7 +14,7 @@ struct LibraryManagerApp: App {
         WindowGroup {
             LibraryView(
                 store: Store(
-                    initialState: LibraryReducer.State.mock(),
+                    initialState: LibraryReducer.State(currentSegment: .library, books: [], newBook: .new()),
                     reducer: LibraryReducer()
                 )
             )

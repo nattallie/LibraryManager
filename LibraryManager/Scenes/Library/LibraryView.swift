@@ -56,7 +56,7 @@ public struct LibraryView: View {
                     .scrollContentBackground(.hidden)
                     .scrollIndicators(.hidden)
                     .listRowSpacing(10)
-                    .shadow(color: ColorBook.primary7, radius: 5)
+                    .shadow(color: ColorBook.primary7, radius: 2)
                 NavigationLink("") {
                     BookDetailsView(
                         viewStore: ViewStore(
