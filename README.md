@@ -10,8 +10,6 @@ Users can sync lists as long as the app is installed on their device because I p
 
 ## Demo
 
-https://user-images.githubusercontent.com/48618128/236696421-8deb1490-9263-45f4-809c-b146847c4139.mov  
+https://github.com/nattallie/LibraryManager/assets/48618128/a19c298a-3173-46c5-a334-b18e544f1e94
 
-https://user-images.githubusercontent.com/48618128/236696441-1a00c6a3-9a0c-42af-8bd6-b6cf260b80e5.mov
 
-https://user-images.githubusercontent.com/48618128/236696444-8047e82d-e7e6-4bde-916a-c42c670737d4.MP4
