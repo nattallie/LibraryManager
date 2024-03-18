@@ -36,12 +36,12 @@ struct BookRowView: View {
                     Spacer()
                     if viewStore.isRead {
                         VStack {
-                            Image(systemName: "checkmark")
+                            Image(systemName: "checkmark.circle")
                                 .resizable()
                                 .renderingMode(.template)
                                 .foregroundColor(ColorBook.primary9)
                                 .aspectRatio(contentMode: .fit)
-                                .frame(width: 18, height: 18)
+                                .frame(width: 22, height: 22)
                         }
                         .frame(alignment: .trailing)
                     }
@@ -85,12 +85,20 @@ struct BookRowView: View {
         @ObservedObject var viewStore: ViewStoreOf<BookRowReducer>
         
         var body: some View {
-            Button("📖") {
-                viewStore.send(.didTapQueueSwipe)
-            }.tint(viewStore.wantsToRead ? .red : .green)
-            Button("📚") {
-                viewStore.send(.didTapRemoveFromLibrary)
-            }.tint(.red)
+            Button(
+                action: { viewStore.send(.didTapQueueSwipe) },
+                label: {
+                    Image(systemName: "book")
+                }
+            )
+                .tint(ColorBook.primary5)
+            Button(
+                action: { viewStore.send(.didTapRemoveFromLibrary) },
+                label: {
+                    Image(systemName: "books.vertical")
+                }
+            )
+                .tint(ColorBook.primary7)
         }
     }
     
@@ -98,12 +106,20 @@ struct BookRowView: View {
         @ObservedObject var viewStore: ViewStoreOf<BookRowReducer>
         
         var body: some View {
-            Button("📚") {
-                viewStore.send(.didTapAddToLibrarySwipe)
-            }.tint(.green)
-            Button("🛍") {
-                viewStore.send(.didTapRemoveFromWishlist)
-            }.tint(.red)
+            Button(
+                action: { viewStore.send(.didTapAddToLibrarySwipe) },
+                label: {
+                    Image(systemName: "books.vertical")
+                }
+            )
+                .tint(ColorBook.primary5)
+            Button(
+                action: { viewStore.send(.didTapRemoveFromWishlist) },
+                label: {
+                    Image(systemName: "suit.heart")
+                }
+            )
+                .tint(ColorBook.primary7)
         }
     }
     
@@ -111,12 +127,20 @@ struct BookRowView: View {
         @ObservedObject var viewStore: ViewStoreOf<BookRowReducer>
         
         var body: some View {
-            Button("✔️") {
-                viewStore.send(.didTapHaveReadSwipe)
-            }.tint(.green)
-            Button("📖") {
-                viewStore.send(.didTapRemoveFromQueue)
-            }.tint(.red)
+            Button(
+                action: { viewStore.send(.didTapHaveReadSwipe) },
+                label: {
+                    Image(systemName: "checkmark.circle")
+                }
+            )
+                .tint(ColorBook.primary5)
+            Button(
+                action: { viewStore.send(.didTapRemoveFromQueue) },
+                label: {
+                    Image(systemName: "book.closed")
+                }
+            )
+                .tint(ColorBook.primary7)
         }
     }
 }

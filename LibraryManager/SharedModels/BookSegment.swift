@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Book Segment
 public enum BookSegment: String, CaseIterable, Hashable {
-    case library = "Library  📚"
-    case wishlist = "Wishlist  🛍"
-    case queue = "Queue  📖"
+    case library = "Library  ۫"
+    case wishlist = "Wishlist  ۫"
+    case queue = "Queue  ۫"
 }

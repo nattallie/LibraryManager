@@ -85,7 +85,7 @@ public struct LibraryView: View {
                             )
                         }, 
                         label: {
-                            Text("Add  📗")
+                            Text("Add  ＋")
                                 .foregroundStyle(ColorBook.primary9)
                                 .font(.system(size: 16, weight: .semibold))
                         }
