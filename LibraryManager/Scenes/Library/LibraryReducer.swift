@@ -18,14 +18,21 @@ public struct LibraryReducer: ReducerProtocol {
     public struct State: Equatable {
         public var currentSegment: BookSegment
         public var books: IdentifiedArrayOf<BookRowReducer.State>
+        public var searchText: String
         public var filteredBooks: IdentifiedArrayOf<BookRowReducer.State> {
             switch currentSegment {
             case .library:
-                return .init(uniqueElements: books.filter { $0.owns }.sorted(by: { $0.author < $1.author} ))
+                return .init(uniqueElements: books.filter {
+                    $0.owns && (searchText.isEmpty || ($0.author.lowercased().contains(searchText.lowercased())) || $0.title.lowercased().contains(searchText.lowercased()))
+                }.sorted(by: { $0.author < $1.author } ))
             case .wishlist:
-                return .init(uniqueElements: books.filter { $0.wantsToBuy }.sorted(by: { $0.author < $1.author} ))
+                return .init(uniqueElements: books.filter {
+                    $0.wantsToBuy && (searchText.isEmpty || ($0.author.lowercased().contains(searchText.lowercased()) || $0.title.lowercased().contains(searchText.lowercased())))
+                }.sorted(by: { $0.author < $1.author } ))
             case .queue:
-                return .init(uniqueElements: books.filter { $0.wantsToRead }.sorted(by: { $0.author < $1.author} ))
+                return .init(uniqueElements: books.filter {
+                    $0.wantsToRead && (searchText.isEmpty || ($0.author.lowercased().contains(searchText.lowercased()) || $0.title.lowercased().contains(searchText.lowercased())))
+                }.sorted(by: { $0.author < $1.author} ))
             }
         }
         public var newBook: BookDetailsReducer.State
@@ -40,6 +47,7 @@ public struct LibraryReducer: ReducerProtocol {
         case newBookCreated(BookDetailsReducer.Action)
         case newBookNavigationActivityChanged
         case filteredBooksDeletedAt(indexSet: IndexSet)
+        case searchTextUpdated(_ text: String)
     }
     
     // MARK: init
@@ -63,6 +71,7 @@ public struct LibraryReducer: ReducerProtocol {
             state.books = .init(uniqueElements: booksClient.provider.fetchAllBooks())
             return .none
         case let .didChangeSegment(currentSegment):
+            state.searchText = ""
             state.currentSegment = currentSegment
             return .none
         case .book:
@@ -84,6 +93,9 @@ public struct LibraryReducer: ReducerProtocol {
                 booksClient.provider.removeBook(state.filteredBooks[index])
                 state.books.remove(state.filteredBooks[index])
             }
+            return .none
+        case let .searchTextUpdated(text):
+            state.searchText = text
             return .none
         default:
             return .none
@@ -120,11 +132,13 @@ extension LibraryReducer.State {
                 isRead: true
             )
         ],
+        searchText: String = "",
         newBook: BookDetailsReducer.State = .new()
     ) -> Self {
         .init(
             currentSegment: currentSegment,
-            books: books,
+            books: books, 
+            searchText: searchText,
             newBook: newBook
         )
     }
