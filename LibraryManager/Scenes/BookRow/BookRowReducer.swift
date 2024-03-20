@@ -45,6 +45,12 @@ public struct BookRowReducer: ReducerProtocol {
                 self.isRead = newValue.book.isRead
             }
         }
+        
+        func containsText(_ text: String) -> Bool {
+            text.isEmpty || 
+            author.lowercased().contains(text.lowercased()) ||
+            title.lowercased().contains(text.lowercased())
+        }
     }
     
     // MARK: Action

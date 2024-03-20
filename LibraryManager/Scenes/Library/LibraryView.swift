@@ -12,7 +12,6 @@ import SwiftUI
 public struct LibraryView: View {
     let store: StoreOf<LibraryReducer>
     @ObservedObject var viewStore: ViewStore<ViewState, LibraryReducer.Action>
-    @State var searchText: String = ""
     
     // MARK: init
     public init(store: StoreOf<LibraryReducer>) {
@@ -38,8 +37,8 @@ public struct LibraryView: View {
                 List {
                     CustomSearchBar(
                         placeHolder: "Search",
-                        text: $searchText,
-                        onSubmit: { viewStore.send(.searchTextUpdated(searchText)) }
+                        text: .init(get: { viewStore.searchText }, set: { viewStore.send(.searchTextUpdated($0)) }),
+                        onSubmit: {}
                     )
                         .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
                         .listRowBackground(Color.clear)
@@ -112,11 +111,7 @@ public struct LibraryView: View {
             })
         }
         .navigationBarTitleColor(ColorBook.primary9)
-        .onChange(of: viewStore.currentSegment, perform: { _ in
-            searchText = ""
-        })
         .onAppear {
-            searchText = viewStore.searchText
             viewStore.send(.onAppear)
         }
     }

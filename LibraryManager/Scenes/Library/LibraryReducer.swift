@@ -23,15 +23,15 @@ public struct LibraryReducer: ReducerProtocol {
             switch currentSegment {
             case .library:
                 return .init(uniqueElements: books.filter {
-                    $0.owns && (searchText.isEmpty || ($0.author.lowercased().contains(searchText.lowercased())) || $0.title.lowercased().contains(searchText.lowercased()))
+                    $0.owns && $0.containsText(searchText)
                 }.sorted(by: { $0.author < $1.author } ))
             case .wishlist:
                 return .init(uniqueElements: books.filter {
-                    $0.wantsToBuy && (searchText.isEmpty || ($0.author.lowercased().contains(searchText.lowercased()) || $0.title.lowercased().contains(searchText.lowercased())))
+                    $0.wantsToBuy && $0.containsText(searchText)
                 }.sorted(by: { $0.author < $1.author } ))
             case .queue:
                 return .init(uniqueElements: books.filter {
-                    $0.wantsToRead && (searchText.isEmpty || ($0.author.lowercased().contains(searchText.lowercased()) || $0.title.lowercased().contains(searchText.lowercased())))
+                    $0.wantsToRead && $0.containsText(searchText)
                 }.sorted(by: { $0.author < $1.author} ))
             }
         }
