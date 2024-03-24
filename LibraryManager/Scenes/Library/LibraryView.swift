@@ -70,18 +70,6 @@ public struct LibraryView: View {
                     .scrollIndicators(.hidden)
                     .listRowSpacing(10)
                     .shadow(color: ColorBook.primary7, radius: 2)
-
-                NavigationLink("") {
-                    BookDetailsView(
-                        viewStore: ViewStore(
-                            store.scope(
-                                state: \.newBook,
-                                action: LibraryReducer.Action.newBookCreated
-                            )
-                        ),
-                        fromSegment: .library
-                    )
-                }
             }
             .mainBackground()
             .toolbar(content: {

@@ -45,7 +45,6 @@ public struct LibraryReducer: ReducerProtocol {
         case book(id: BookRowReducer.State.ID, action: BookRowReducer.Action)
         case didTapAddBook
         case newBookCreated(BookDetailsReducer.Action)
-        case newBookNavigationActivityChanged
         case filteredBooksDeletedAt(indexSet: IndexSet)
         case searchTextUpdated(_ text: String)
     }
@@ -77,8 +76,6 @@ public struct LibraryReducer: ReducerProtocol {
         case .book:
             return .none
         case .didTapAddBook:
-            return .none
-        case .newBookNavigationActivityChanged:
             return .none
         case .newBookCreated(.didTapDoneButton):
             state.books.append(state.newBook.book)
