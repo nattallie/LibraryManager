@@ -12,9 +12,9 @@ Users can sync lists as long as the app is installed on their device because I p
 
 When the app is launched for the first time, your library starts empty. To see the full experience, you can load a predefined list of books. Simply search the **shouldFetchPredefinedList** property in the project and set its value as needed.
 
+https://github.com/user-attachments/assets/a11fcbc9-2f7c-49fd-9b0b-ad8b0ccc7cee
 
 
-https://github.com/user-attachments/assets/17f3fac7-773d-49b5-81b9-62838b5303d5
 
 
 
